@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
 <title>Di Động Thông Minh</title>
 <body>
 	<c:forEach var ="item_type" items="${product_type }">
@@ -19,7 +19,7 @@
        		<div class="grid-row">
        		<c:forEach var="item_product" items="${product}">
        			<c:if test = "${item_type.id == item_product.product_type}"> <!-- xem lại phần này, nếu có cách tối ưu hơn -->
-	       			<a href ="#" class="chitiet-item__product col l-2-4 m-4 c-6" style="text-decoration: none;">
+	       			<a href ="<c:url value ="../../../ProjectSmartphoneMVC/product?id=${item_product.id}"/>" class="chitiet-item__product col l-2-4 m-4 c-6" style="text-decoration: none;">
 	                    <div class="home-product-item">
 	                            <div class="home-product-item-img" style='background-image:url(<c:url value ="/assets/photos/${item_product.thumnail}"/>)'></div>
 	                            <h4 class="home-product-item-name">${item_product.title }</h4>

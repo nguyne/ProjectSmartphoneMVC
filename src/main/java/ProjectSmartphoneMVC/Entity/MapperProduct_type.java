@@ -14,5 +14,4 @@ public class MapperProduct_type implements RowMapper<product_type>{
 		product_type.setName(rs.getString("name"));
 		return product_type;
 	}
-
 }

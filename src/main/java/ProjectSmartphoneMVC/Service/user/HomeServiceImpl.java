@@ -23,5 +23,9 @@ public class HomeServiceImpl implements IHomeService{
 	public List<product_type> getDataProduct_type() {
 		return product_typeDao.getDataProduct_type();
 	}
+	@Override
+	public List<products> getDataProductsDetail(String id) {
+		return productsDao.getDataProductsDetail(id);
+	}
 
 }

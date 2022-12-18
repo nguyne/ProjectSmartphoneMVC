@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
 <footer class="footer">
             <div class="grid wide">
                 <ul class="footer-list">

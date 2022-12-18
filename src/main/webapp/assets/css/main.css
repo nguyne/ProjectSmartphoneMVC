@@ -83,7 +83,7 @@
 
 /* Icon search */
 #searchbt_simple {
-    background: url(../../../assets/img/icon/search.svg) no-repeat scroll center center;
+    background: url(../../../ProjectSmartphoneMVC/assets/img/icon/search.svg) no-repeat scroll center center;
     border: medium;
     position: absolute;
     right: 34px;

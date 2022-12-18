@@ -1,14 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Chi tiết sản phẩm</title>
+<title>Quản lý chung</title>
+<style> 
+	.nav-item:nth-child(1) {
+		background-color: #c1c1c1;
+	}
+</style>
 </head>
 <body>
-<h1></h1>
-	<p>đây là trang chi tiết sản phẩm</p>
+
 </body>
 </html>

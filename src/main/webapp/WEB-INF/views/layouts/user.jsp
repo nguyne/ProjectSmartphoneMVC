@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator" prefix="decorator" %>   
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-
+<%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,6 +21,5 @@
 	<decorator:body/>
 
 <%@include file="/WEB-INF/views/layouts/user/footer.jsp" %>
-</body>
 </html>
 

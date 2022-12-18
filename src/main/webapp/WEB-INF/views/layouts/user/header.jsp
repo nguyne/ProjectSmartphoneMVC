@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
     <div class="main">
         <header class="header">
             <div class="grid wide">
@@ -91,14 +91,14 @@
                                 </label>
                             </div>
                             <ul class="nav__mobile-list">
-                            			<li>
-                                            <a class="nav__mobile-link nav__mobile-link__account" href="#">
-                                                <i class="fa-solid fa-user"></i>
-                                                <span class="nav__mobile-link-login">
-                                                    
-                                                </span>
-                                            </a>
-                                        </li> 
+	                   			<li>
+	                                   <a class="nav__mobile-link nav__mobile-link__account" href="#">
+	                                       <i class="fa-solid fa-user"></i>
+	                                       <span class="nav__mobile-link-login">
+	                                           
+	                                       </span>
+	                                   </a>
+	                               </li> 
 
                                         <li> 
                                             <a class="nav__mobile-link nav__mobile-link__account" href="#">

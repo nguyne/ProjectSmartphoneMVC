@@ -1,34 +1,29 @@
 package ProjectSmartphoneMVC.Controller.user;
 
-import javax.servlet.annotation.HttpMethodConstraint;
-import javax.servlet.http.HttpServlet;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import ProjectSmartphoneMVC.Dao.Product_typeDao;
-import ProjectSmartphoneMVC.Dao.ProductsDao;
-import ProjectSmartphoneMVC.Service.user.HomeServiceImpl;
-
 @Controller
-public class HomeController{
-	@Autowired
-	HomeServiceImpl productService;
+public class HomeController extends BaseController{
+	
 	@RequestMapping(value = {"/","/trang-chu/"} , method = RequestMethod.GET)
 	public ModelAndView Index() {
-		ModelAndView mv = new ModelAndView("user/index");
-		mv.addObject("product_type", productService.getDataProduct_type());
-		mv.addObject("product", productService.getDataProducts());
-		return mv;
+		_mvShase.setViewName("user/index");
+		_mvShase.addObject("product_type", _homeService.getDataProduct_type());
+		_mvShase.addObject("product", _homeService.getDataProducts());
+		return _mvShase;
 	}
 	
 	
-	@RequestMapping(value = "/product/" , method = RequestMethod.GET)
-	public ModelAndView ProductDetails() {
-		ModelAndView mv = new ModelAndView("user/productDetails");
-		return mv;
+	@RequestMapping(value = "/product" , method = RequestMethod.GET)
+	public ModelAndView ProductDetails(@RequestParam String id) {
+		_mvShase.setViewName("user/productDetails");
+		_mvShase.addObject("id_URL", id);
+		return _mvShase;
 	}
+	
+	
 }
