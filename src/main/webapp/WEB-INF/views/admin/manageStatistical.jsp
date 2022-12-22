@@ -82,6 +82,7 @@
 					     labels: [<c:forEach var="item" items="${chartNow}">'${item.month}',</c:forEach>],
 					     datasets: [
 					          {
+						      backgroundColor:'#228bd1',
 					               fillColor: "#17a2b8",
 					               data: [<c:forEach var="item" items="${chartNow}">${item.sumMoney},</c:forEach>]
 					          }
