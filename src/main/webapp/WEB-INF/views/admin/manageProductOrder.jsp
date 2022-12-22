@@ -11,7 +11,7 @@
     <div class="row" >
         <div class= "col-md-12 table-responsive">
             <h3>Quản lí Hóa Đơn</h3>
-			<form:form action="/ProjectSmartphoneMVC/admin/order" method="POST" modelAttribute="ordersProduct">
+			<form:form action="/ProjectSmartphoneMVC/admin/order/status" method="POST" modelAttribute="ordersProduct">
 			<a>
 			<form:select id="hd" name="hoadon" class="btn btn-success" path = "name_status">
 				<option value="1">Tất Cả Hóa Đơn</option>
@@ -33,8 +33,10 @@
 					<th>Địa chỉ</th>
 					<th>Trạng Thái</th>
 					<th>Ngày đặt hàng</th>
-					<th style="width: 50px;">Tùy chỉnh</th>
-					<th style="width: 50px;">Tùy chỉnh</th>
+					<c:if test="${hide == null}">
+						<th style="width: 50px;">Tùy chỉnh</th>
+						<th style="width: 50px;">Tùy chỉnh</th>
+					</c:if>
 				</tr>
 				<%
 				int index=0;
@@ -58,12 +60,14 @@
 					</c:if>
 					<td>${item.name_status }</td>
 					<td>${item.created_at }</td>
-					<th style="width: 40px; height:40px;" >
-						<button class="btn btn-warning" onclick="approveOrder()">Duyệt Đơn</button>
-					</th>
-					<th style="width: 50px;" >
-						<button class="btn btn-danger" onclick="cancelOrder()">Hủy Đơn</button>
-					</th>
+					<c:if test="${hide == null}">
+						<th style="width: 40px; height:40px;" >
+							<a class="btn btn-warning" href="/ProjectSmartphoneMVC/admin/order/approveOrder?id=${item.id}">Duyệt Đơn</a>
+						</th>
+						<th style="width: 50px;" >
+							<a class="btn btn-danger" href="/ProjectSmartphoneMVC/admin/order/cancelOrder?id=${item.id}">Hủy Đơn</a>
+						</th>
+					</c:if>
 				</tr>
 			</c:forEach>
             </table>
@@ -75,7 +79,7 @@
 			if(!option) {
 				return;
 			}
-			$.post('process_approve.php', {
+			$.post('/ProjectSmartphoneMVC/admin/order/approveOrder', {
 				'ID': ID
 			}, function(data) {
 				alert(data)
@@ -87,7 +91,7 @@
 			if(!option) {
 				return;
 			}
-			$.post('process_cancel.php', {
+			$.post('/ProjectSmartphoneMVC/admin/order/approveOrder', {
 				'ID': ID
 			}, function(data) {
 				alert(data)

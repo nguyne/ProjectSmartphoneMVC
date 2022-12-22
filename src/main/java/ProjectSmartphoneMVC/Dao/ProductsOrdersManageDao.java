@@ -29,4 +29,9 @@ public class ProductsOrdersManageDao extends BaseDao{
 		list = _jdbcTemplate.query(sql, new MapperProductOrderManage());
 		return list;
 	}
+	public int UpdateOrder(String status,String id) {
+		String sql= "UPDATE orders SET status='"+status+"' WHERE id="+id;
+		int update = _jdbcTemplate.update(sql);
+		return update;
+	}
 }

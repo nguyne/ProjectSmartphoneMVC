@@ -24,13 +24,14 @@
 		<property name="password" value=""></property>
 	</bean>
 	
+	
+	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="5000000" />
 	</bean>
 	
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource"></property>
-	
 	</bean>
 	
 	<!-- mapping các đường dẫn ở đây -->
@@ -39,5 +40,6 @@
 	<mvc:resources location="/Javascript/" mapping="/Javascript/**"/>
 	<mvc:resources location="/image/" mapping="/image/**"/>
 	<mvc:resources location="/ckfinder/" mapping="/ckfinder/**"/>
+	<mvc:resources location="/chart/" mapping="/chart/**"/>
 	
 </beans>

@@ -49,7 +49,7 @@
                     </div>
                     <div class="form-group">
                         <label for="" style="font-weight: bold;">Thông tin sản phẩm:</label>
-                        <form:textarea class="form-group" id="" style="width: 100%;" rows="5" name="description" path="description"></form:textarea>
+                        <textarea class="form-group" id="" style="width: 100%;" rows="5" name="description" path="description">${item.description}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="" style="font-weight: bold;">Ảnh sản phẩm:</label>

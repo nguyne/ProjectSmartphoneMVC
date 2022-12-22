@@ -25,6 +25,7 @@ public class ProductsManageDao extends BaseDao{
 		list = _jdbcTemplate.query(sql, new MapperProductManage());
 		return list;
 	}
+	
 	public int addProduct(products product) {
 		
 		String sql = "INSERT INTO product(product_type, title, price, discount, num, thumnail, description)"

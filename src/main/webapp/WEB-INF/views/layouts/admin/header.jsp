@@ -41,19 +41,19 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<c:url value ="/admin/user"/>">
               <i class="bi bi-people-fill"></i>
               Quản Lý Người Dùng
             </a>
           </li>
           <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<c:url value ="/admin/product/sale"/>">
                 <i-people-fill"></i>
                   Khuyến mãi sản phẩm
               </a>
           </li>
           <li class="nav-iem">
-            <a class="nav-link" href="#">
+            <a class="nav-link" href="<c:url value ="/admin/statistical"/>">
 			      <i class="bi bi-people-fill"></i>
               Thống kê 
             </a>
