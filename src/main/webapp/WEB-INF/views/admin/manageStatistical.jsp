@@ -75,15 +75,14 @@
 		     <h3 class="tlt">Thống Kê</h3>
 		     <canvas id="bar" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
 		     <script type="text/javascript">
-			     	Chart.defaults.global.defaultFontFamily = 'Lato';
-			     	Chart.defaults.global.defaultFontSize = 18;
-			     	Chart.defaults.global.defaultFontColor = '#777';
 					var barChartData = {
 					     labels: [<c:forEach var="item" items="${chartNow}">'${item.month}',</c:forEach>],
 					     datasets: [
 					          {
-					               fillColor: "#17a2b8",
-					               data: [<c:forEach var="item" items="${chartNow}">${item.sumMoney},</c:forEach>]
+
+									backgroundColor:'#228bd1',
+									fillColor: "#228bd1",
+									data: [<c:forEach var="item" items="${chartNow}">${item.sumMoney},</c:forEach>]
 					          }
 					     ]
 					};

@@ -3,23 +3,18 @@ package ProjectSmartphoneMVC.Controller.admin;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletRequest;
 
-import org.apache.taglibs.standard.lang.jstl.test.beans.PublicBean1;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Entity.products;
 import ProjectSmartphoneMVC.Entity.productsSale;
 
@@ -175,7 +170,7 @@ public class ProductControllerAdmin extends BaseControllerAdmin{
 				productSale.setNumber_sale(Integer.parseInt(num_sale));
 				productSale.setNum_buy(0);
 				productSale.setStatus_sale(1);
-				int count = _homeService.insertProductSale(productSale);
+				_homeService.insertProductSale(productSale);
 			}
 		}
 		statusFailed +=" đã tồn tại trong danh sách";

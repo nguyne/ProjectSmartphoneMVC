@@ -18,7 +18,6 @@ public class ProductManageDto {
 	
 	public ProductManageDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 

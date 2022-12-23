@@ -127,11 +127,11 @@
                                                             </a>
                                                         </li>
                                     <li class = "nav__mobile-item-acount">
-                                        <a href="#" class="nav__mobile-link">
+                                        <a href="<c:url value="/authen/login"/>" class="nav__mobile-link">
                                             <i class="fa-solid fa-user"></i>
                                             <span class="nav__mobile-link-login">Đăng nhập</span>
                                         </a>
-                                        <a href="#" class="nav__mobile-link nav__mobile-link-res">
+                                        <a href="<c:url value="/authen/register"/>" class="nav__mobile-link nav__mobile-link-res">
                                             <i class="fa-solid fa-user"></i>
                                             <span class="nav__mobile-link-login">Đăng ký</span>
                                         </a>
@@ -169,20 +169,24 @@
                             </ul>
                         </nav>
                         <div class="header__navbar-item-lore-shared header__navbar-item-lore-shared-hover">
-                                        <a href="#" class="header__navbar-item-fullName-link"></a>
-                                        <div class="header__navbar-item-box-user">
-                                            <ul class="header__navbar-item-box-user-list">
-                                                <li class="header__navbar-item-box-user-item"> <a href="#">Đổi mật khẩu</a></li>
-                                                <li class="header__navbar-item-box-user-item"> <a href="#">Đơn hàng đã mua</a></li>
-                                                <li class="header__navbar-item-box-user-item"><a href="#" >Đăng xuất</a></li>
-                                                <li class="header__navbar-item-box-user-item"><a href="#" >Admin</a></li>
-                                                    
-                                            </ul>
-                                        </div>
-                                    <a href="#" class="header__navbar-item-login-link header__navbar-item-lore">Đăng nhập</a>
-                            
-                                    <a href="#" class="header__navbar-item-register-link header__navbar-item-lore">Đăng kí</a>
-                                    
+                       	<c:if test="${!empty idUser }">
+                       		<a href="#" class="header__navbar-item-fullName-link">${fullname }</a>
+                               <div class="header__navbar-item-box-user">
+                                   <ul class="header__navbar-item-box-user-list">
+                                       <li class="header__navbar-item-box-user-item"> <a href="#">Đổi mật khẩu</a></li>
+                                       <li class="header__navbar-item-box-user-item"> <a href="#">Đơn hàng đã mua</a></li>
+                                       <li class="header__navbar-item-box-user-item"><a href="<c:url value="/authen/logout"/>" >Đăng xuất</a></li>
+                                       <c:if test="${roleID == 1}">
+                                       <li class="header__navbar-item-box-user-item"><a href="<c:url value="/admin/"/>" >Admin</a></li>
+                                       </c:if>
+                                           
+                                   </ul>
+                               </div>
+                       	</c:if>
+                       	<c:if test="${empty idUser }">
+                           <a href="<c:url value="/authen/login"/>" class="header__navbar-item-login-link header__navbar-item-lore">Đăng nhập</a>
+                           <a href="<c:url value="/authen/register"/>" class="header__navbar-item-register-link header__navbar-item-lore">Đăng kí</a>
+                        </c:if>      
                         </div>
                     </div>  
                 </div>

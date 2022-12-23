@@ -15,7 +15,7 @@ public class ProductsManageDao extends BaseDao{
 	
 	public List<ProductManageDto> getDataManageDtos(){
 		List<ProductManageDto> list = new ArrayList<ProductManageDto>();
-		String sql = "SELECT p.*,pType.name FROM product p INNER JOIN product_type pType ON p.product_type = pType.id ORDER BY p.created_at  DESC";
+		String sql = "SELECT p.*,pType.name FROM product p INNER JOIN product_type pType ON p.product_type = pType.id ORDER BY p.created_at DESC";
 		list = _jdbcTemplate.query(sql, new MapperProductManage());
 		return list;
 	}

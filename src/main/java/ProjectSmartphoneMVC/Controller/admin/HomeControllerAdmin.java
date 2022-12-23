@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class HomeControllerAdmin extends BaseControllerAdmin{
+
 	@RequestMapping(value = {"/admin/"} , method = RequestMethod.GET)
 	public ModelAndView Index() {
 		_mvShase.setViewName("admin/index");

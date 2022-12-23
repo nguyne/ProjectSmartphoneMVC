@@ -24,9 +24,22 @@ public class UsersManageDao extends BaseDao{
 		list = _jdbcTemplate.query(sqlString, new MapperUserManage());
 		return list;
 	}
+	public List<UsersManageDto> getDataUsers(String userName, String password){
+		List<UsersManageDto> list = new ArrayList<UsersManageDto>();
+		String sqlString = "SELECT u.*,r.name AS role_name FROM user u INNER JOIN role r ON u.role_id = r.id WHERE u.userName ='"+userName+"' AND u.password=md5('"+password+"')";
+		list = _jdbcTemplate.query(sqlString, new MapperUserManage());
+		return list;
+	}
 	public int Update(Users users) {
 		String sql = "UPDATE user SET fullname='"+users.getFullname()+"',email='"+users.getEmail()+"',phone_number='"+users.getPhone_number()+"'"
 				+ ",address='"+users.getAddress()+"',role_id='"+users.getRole_id()+"' WHERE id="+users.getId();
+		int count = _jdbcTemplate.update(sql);
+		return count;
+	}
+	
+	public int insert(Users users) {
+		String sql = "INSERT INTO user(fullname, email, phone_number, address, userName, password, role_id) "
+				+ "VALUES ('"+users.getFullname()+"','"+users.getEmail()+"','"+users.getPhone_number()+"','"+users.getAddress()+"','"+users.getUserName()+"',md5('"+users.getPassword()+"'),'"+users.getRole_id()+"')";
 		int count = _jdbcTemplate.update(sql);
 		return count;
 	}

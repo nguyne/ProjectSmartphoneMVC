@@ -1,7 +1,5 @@
 package ProjectSmartphoneMVC.Entity;
 
-import java.util.Date;
-
 public class productsSale {
 	private int id; 
 	private int id_product_sale; 

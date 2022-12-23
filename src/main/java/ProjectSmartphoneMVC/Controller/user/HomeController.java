@@ -2,11 +2,15 @@ package ProjectSmartphoneMVC.Controller.user;
 
 
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @Controller
 public class HomeController extends BaseController{
@@ -19,12 +23,10 @@ public class HomeController extends BaseController{
 		return _mvShase;
 	}
 	
-	
 	@RequestMapping(value = "/product" , method = RequestMethod.GET)
 	public ModelAndView ProductDetails(@RequestParam String id) {
 		_mvShase.setViewName("user/productDetails");
 		return _mvShase;
 	}
-	
 	
 }
