@@ -3,7 +3,11 @@
 <%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
 <title>Di Động Thông Minh</title>
 <body>
-	<c:forEach var ="item_type" items="${product_type }">
+<%@include file="/WEB-INF/views/layouts/user/slide.jsp" %>
+<%@include file="/WEB-INF/views/layouts/user/sale.jsp" %>
+<div class="grid wide">
+<div class="product-laysanpham">
+	<c:forEach var ="item_type" items="${product_type}">
 		 <div class="header__nav-tab" > 
             <div class = "header__nav-type">
                 <img src="<c:url value ="/assets/img/quangcao-containner/dienthoai_1637814357.svg"/>" alt="" class="header__nav-tab-img"/>
@@ -12,7 +16,7 @@
                 </div>
             </div>
             <div class = "header__nav-tab-xemthem">
-                <a href="<c:url value="/product/seemore?id=${item_type.id }"/>" class="header__nav-tab-xemthem-link">Xem thêm</a>
+                <a href="<c:url value="/product/seemore?id=${item_type.id}&page=1"/>" class="header__nav-tab-xemthem-link">Xem thêm</a>
             </div>
         </div>
 		<div class="home-product">
@@ -50,4 +54,6 @@
        			</div>
        		</div>
 	</c:forEach>
+</div>
+</div>
 </body>

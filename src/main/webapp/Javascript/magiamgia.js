@@ -4,7 +4,7 @@ var URLSale = baseURL+'/sale/select_sale.php';
 
 function start() {
     getProductSale(handleProductSale);
-	Window.location.load(false);
+	Window.location.load(true);
 }
 start();
 
@@ -50,7 +50,7 @@ function handleProductSale(data) {
                     <a href ="../../../../WebDiDong_PTPMCN/DiThoaiThongMinh-PTPMCN/chitietSP/index.php?id=${item.id_product_sale}&sale=1" class="col l-2-4 m-4 c-6 box-sale-products-item__box" style="text-decoration: none;">
                         
                         <div class="home-product-item">
-                            <div class="home-product-item-img" style="background-image:url(./admin/product/image/${item.thumnail});">
+                            <div class="home-product-item-img" style="background-image:url(/ProjectSmartphoneMVC/image/${item.thumnail});">
                             <div class="box-price-product">
                                 <div class="discount_box__product">
                                     <img src="./assets/img/magiamgia/icon_flash.svg" alt="">

@@ -10,6 +10,7 @@ import ProjectSmartphoneMVC.Dao.ProductsDao;
 import ProjectSmartphoneMVC.Dao.UsersManageDao;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
+import ProjectSmartphoneMVC.Dto.chitietsp;
 import ProjectSmartphoneMVC.Entity.Users;
 import ProjectSmartphoneMVC.Entity.product_type;
 import ProjectSmartphoneMVC.Entity.products;
@@ -45,5 +46,24 @@ public class HomeServiceImpl implements IHomeService{
 	public List<UsersManageDto> getDataUsers(String userName, String password) {
 		return usersManageDao.getDataUsers(userName, password);
 	}
-
+	@Override
+	public List<chitietsp> getDataProduct(String id) {
+		return productsDao.getDataProduct(id);
+	}
+	@Override
+	public List<chitietsp> getDataDiscountText(String id) {
+		return productsDao.getDataDiscountText(id);
+	}
+	@Override
+	public List<chitietsp> getDataConfiguration(String id) {
+		return productsDao.getDataConfiguration(id);
+	}
+	@Override
+	public List<products> getDataProductType(String id) {
+		return productsDao.getDataProductType(id);
+	}
+	@Override
+	public List<products> getDataProductPaginate(String id, int start, int limit) {
+		return productsDao.getDataProductPaginate(id, start, limit);
+	}
 }
