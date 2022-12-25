@@ -10,8 +10,10 @@
 <body>
 <div class="grid wide">
     <div class="chitiet-chitiet ">
+   	<h1>${cart.size()}</h1>
 		<div class="form-active-chitiet ">
 			<c:forEach var = "itemproduct" items = "${product_Details}">
+			 	<form class = "" method = "GET" action = "/addCart/${itemproduct.id}">
 					<div class="header-chitiet-content">
 									<h3>
 										${itemproduct.title}
@@ -91,7 +93,11 @@
 														<span>Visa, Mastercart, JCB, Amex</span>
 														</button>
 													</div>
-													<input class="chitiet-container-type-btn" type="submit" name="add_cart" value="Thêm vào giỏ hàng">
+													
+													<a href="<c:url value = "/addCart/${itemproduct.id}"/>" class="chitiet-container-type-btn">
+								                         Thêm vảo giỏ hàng
+								                     </a>
+												<input class="chitiet-container-type-btn" type="submit" name="add_cart" value="Thêm vào giỏ hàng">
 													<div class="chitiet-container-copy">
 														<button class= "chitiet-container-copy-link">
 															<span class="chitiet-container-boder">
@@ -595,7 +601,7 @@
 												</div>
 											</div>
 										<input type="hidden" name="commentId" id="commentId" value="0" />
-										</form>
+									</form>
 										<!-- Code comment tại đây -->
 										<div class="comment_chitiet--hienthi" id="showComments"></div>
 										<script src = "../Javascript/comment.js"></script>
