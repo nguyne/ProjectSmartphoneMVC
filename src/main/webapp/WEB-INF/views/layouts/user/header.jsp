@@ -51,21 +51,41 @@
                                 <span>0392518760</span>
                             </div>
                         </a>
-                        <a href="#" class="header__navbar-menu-link header__navbar-item-cart header__navbar-item-hover header__navbar-item-click">
+                        <a href="<c:url value = "/gio-hang"/>" class="header__navbar-menu-link header__navbar-item-cart header__navbar-item-hover header__navbar-item-click">
                             <img src="<c:url value = "/assets/img/cart.svg"/>" alt="" class="header__navbar-menu-img">
                             <div class="header__navbar-menu-right header__navbar-cart-basket ">
                                 <span>Giỏ hàng</span>
-                                <span class="header__navbar-number-cart">
-                                    0
-                                </span>
+                                <c:if test="${!empty cart }">
+	                                <span class="header__navbar-number-cart">
+	                                   ${totalQuantyCart}
+	                                </span>
+                                </c:if>
+                                <c:if test="${empty cart }">
+                                	<span class="header__navbar-number-cart">
+                                   		0
+                                	</span>
+                                </c:if>
                             </div>
 
                             <!-- LIST -->
                             <ul class="header__navbar-cart-list">
                                 <h4>Sản phẩm mới thêm</h4>
-                                
+                                <c:forEach var = "item" items = "${ cart }">
+                                	<li class="header__navbar-cart-item">
+                                         <div class="header__navbar-cart-img">
+                                             <img src="<c:url value = "/assets/photos/${item.value.product.thumnail }"/>" alt="Hình sản phẩm" class="header__navbar-cart-img-link">
+                                         </div>
+                                         <div class="header__navbar-cart-name">
+                                          		${ item.value.product.title}
+                                         </div>
+                                         
+                                         <div class="header__navbar-cart-price">
+                                             ${ item.value.product.price}
+                                         </div>
+                                     </li>
+                                 </c:forEach>
                                 <span class="header__navbar-cart-list-span">
-                                    Tổng tiền: 
+                                    Tổng tiền:<fmt:formatNumber type = "number" groupingUsed = "true" value = "${totalpriceCart}" />
                                 </span>
                                 <sup>đ</sup>
                             </ul>
@@ -119,13 +139,13 @@
                                                 <span class="nav__mobile-link-login">Đăng xuất</span>
                                             </a>
                                         </li>
-                                        				<li>
-                                                            <a href="#" class="nav__mobile-link nav__mobile-link__account" >
-                                                                <span class="nav__mobile-link-login">
-                                                                    Admin
-                                                                </span>
-                                                            </a>
-                                                        </li>
+                         				<li>
+                                             <a href="#" class="nav__mobile-link nav__mobile-link__account" >
+                                                 <span class="nav__mobile-link-login">
+                                                     Admin
+                                                 </span>
+                                             </a>
+                                         </li>
                                     <li class = "nav__mobile-item-acount">
                                         <a href="<c:url value="/authen/login"/>" class="nav__mobile-link">
                                             <i class="fa-solid fa-user"></i>
@@ -161,7 +181,6 @@
                                     <img src="<c:url value = "/assets/img/logo.svg"/>img/responsivemobi/carticon_mobi.svg" alt="icon logo cart" class="img-responsive">
                                         <span class = "textgiohang">Giỏ hàng</span>
                                         <span class="nbc">
-                                        
                                         </span>
                                     </a>
                                 </li>

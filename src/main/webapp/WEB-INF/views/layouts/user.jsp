@@ -19,10 +19,14 @@
     <link rel="stylesheet" href="<c:url value ="/assets/css/sale.css"/>"/>
 	<script src = "<c:url value ="https://code.jquery.com/jquery-3.1.1.min.js"/>"></script>
 	<!--<script src="comments_product/js/comments.js"></script>  -->
+	
+	
 	<link rel="stylesheet" href="<c:url value ="/assets/css/chitiet.css"/>"/>
 </head>
 <%@include file="/WEB-INF/views/layouts/user/header.jsp" %>
 	<decorator:body/>
+	
+	<decorator:getProperty property="page.script"></decorator:getProperty>
 
 <%@include file="/WEB-INF/views/layouts/user/footer.jsp" %>
 </html>

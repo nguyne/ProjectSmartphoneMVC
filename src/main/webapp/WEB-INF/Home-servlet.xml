@@ -41,5 +41,4 @@
 	<mvc:resources location="/image/" mapping="/image/**"/>
 	<mvc:resources location="/ckfinder/" mapping="/ckfinder/**"/>
 	<mvc:resources location="/chart/" mapping="/chart/**"/>
-	
 </beans>
