@@ -21,13 +21,21 @@ public class CartController extends BaseController{
 	@Autowired
 	private CartServiceIml cartService = new CartServiceIml();
 	
-	@RequestMapping(value = {"/cart/"}, method = RequestMethod.GET)
-	public ModelAndView index() {
+	@RequestMapping(value = {"gio-hang"})
+	public ModelAndView Index() {
+		_mvShase.setViewName("user/cart");
+		_mvShase.addObject("product_type", _homeService.getDataProduct_type());
+		_mvShase.addObject("product", _homeService.getDataProducts());
 		return _mvShase;
 	}
 	
+	@RequestMapping(value = {"/cart/"})
+	public String Cart(HttpServletRequest request,HttpSession session, @PathVariable String id) {
+		
+		return "redirect:"+request.getHeader("Refere");
+	}
 	
-	@RequestMapping(value = {"addCart/{id}"})
+	@RequestMapping(value = {"/addCart/{id}"})
 	public String AddCart(HttpServletRequest request,HttpSession session, @PathVariable String id) {
 		HashMap<String, CartDto> cart = (HashMap<String, CartDto>)session.getAttribute("cart");
 		if(cart == null) {
@@ -38,17 +46,23 @@ public class CartController extends BaseController{
 		session.setAttribute("totalQuantyCart", cartService.totalQuanty(cart));
 		session.setAttribute("totalpriceCart", cartService.totalPrice(cart));
 		//chuyển về trang hiện tại đã click
-		return "redirect:"+request.getHeader("Refere");
+//		return "redirect:"+request.getHeader("Refere");
+		return "redirect:/product?id="+id;
 	}
 	
-	@RequestMapping(value = {"editCart/{id}"})
-	public String editCart(HttpSession session,@PathVariable String id) {
+	@RequestMapping(value = {"editCart/{id}/{quanty}"})
+	public String editCart(HttpSession session,@PathVariable String id, @PathVariable int quanty) {
 		HashMap<String, CartDto> cart = (HashMap<String, CartDto>)session.getAttribute("cart");
 		if(cart == null) {
 			cart = new HashMap<String, CartDto>();
 		}
 		
-		return "redirect:/cart/";
+		cart = cartService.editCart(id, quanty, cart);
+		session.setAttribute("cart", cart);
+		session.setAttribute("totalQuantyCart", cartService.totalQuanty(cart));
+		session.setAttribute("totalpriceCart", cartService.totalPrice(cart));
+		
+		return "redirect:/gio-hang/";
 	}
 	
 	@RequestMapping(value = {"deleteCart/{id}"})
@@ -63,6 +77,6 @@ public class CartController extends BaseController{
 			session.setAttribute("totalQuantyCart", cartService.totalQuanty(cart));
 			session.setAttribute("totalpriceCart", cartService.totalPrice(cart));
 		}
-		return "redirect:/cart/";
+		return "redirect:/gio-hang/";
 	}
 }
