@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 
 import ProjectSmartphoneMVC.Dao.Product_typeDao;
 import ProjectSmartphoneMVC.Dao.ProductsDao;
+import ProjectSmartphoneMVC.Dao.ProductsOrdersManageDao;
 import ProjectSmartphoneMVC.Dao.UsersManageDao;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
+import ProjectSmartphoneMVC.Entity.Order;
 import ProjectSmartphoneMVC.Entity.Users;
 import ProjectSmartphoneMVC.Entity.product_type;
 import ProjectSmartphoneMVC.Entity.products;
@@ -22,6 +24,9 @@ public class HomeServiceImpl implements IHomeService{
 	private Product_typeDao product_typeDao;
 	@Autowired
 	private UsersManageDao usersManageDao;
+	@Autowired
+	private ProductsOrdersManageDao ordersManageDao;
+	
 	@Override
 	public List<products> getDataProducts() {
 		return productsDao.getDataProducts();
@@ -65,5 +70,9 @@ public class HomeServiceImpl implements IHomeService{
 	@Override
 	public List<products> getDataProductPaginate(String id, int start, int limit) {
 		return productsDao.getDataProductPaginate(id, start, limit);
+	}
+	@Override
+	public int insertOrder(Order order, String maHD) {
+		return ordersManageDao.insert(order, maHD);
 	}
 }

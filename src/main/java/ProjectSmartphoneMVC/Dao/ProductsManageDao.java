@@ -53,3 +53,4 @@ public class ProductsManageDao extends BaseDao{
 		return insert;
 	}
 }
+

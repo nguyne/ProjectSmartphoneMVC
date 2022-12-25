@@ -10,6 +10,7 @@ import ProjectSmartphoneMVC.Dto.ProductHomeDto;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
+import ProjectSmartphoneMVC.Entity.Order;
 import ProjectSmartphoneMVC.Entity.Users;
 import ProjectSmartphoneMVC.Entity.product_type;
 import ProjectSmartphoneMVC.Entity.products;
@@ -37,5 +38,6 @@ public interface IHomeService {
 	public List<chitietsp> getDataConfiguration(String id);
 	@Autowired
 	public List<products> getDataProductPaginate(String id, int start, int limit);
-
+	@Autowired
+	public int insertOrder(Order order, String maHD);
 }

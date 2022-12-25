@@ -80,7 +80,7 @@
                                          </div>
                                          
                                          <div class="header__navbar-cart-price">
-                                             ${ item.value.product.price}
+                                             <fmt:formatNumber type = "number" groupingUsed = "true" value = "${(item.value.product.price - item.value.product.price*item.value.product.discount/100)*item.value.quanty }" />₫
                                          </div>
                                      </li>
                                  </c:forEach>

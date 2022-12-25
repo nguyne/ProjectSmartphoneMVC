@@ -13,7 +13,7 @@
 <div class="grid wide ">
     <div class="cart-box__content l-8 c-12">
         <div class="cart-heading__text">
-            <a href="../" class="cart-heading__text-link">
+            <a href="<c:url value="/trang-chu/"/>" class="cart-heading__text-link">
             <i class="fa-solid fa-angle-left fa-angle-left-color"></i>
                 Mua thêm sản phẩm khác
             </a>
@@ -22,11 +22,10 @@
         <div class="cart-container">
          	<c:if test="${!empty cart }">
         		<c:forEach var = "item" items = "${ cart }">
-        			
         			<ul class="cart-container__list c-12">
 			                <li class="cart-container__item c-12">
 			                 <div class="cart-container__item-check">
-			                     <input type="checkbox" name="" id="" class = "cart-container__item">
+			                     <input type="checkbox" name="check[]" value="${item.value.product.id }" class = "cart-container__item">
 			                 </div>
 			                 <div class="cart-container__item-box c-3">
 			                     <a href="" class="cart-container__box-img-link">
@@ -56,11 +55,11 @@
 			                 <div class="cart-container__item-price-content c-4">
 			                     <div class="cart-container__item-price-tren">
 			                         <div class="cart-container__item-price">
-			                         <fmt:formatNumber type="Number" groupingUsed="true" value="${ item.value.totalPice - item.value.totalPice * item.value.product.discount / 100 }"/>đ
+			                         <fmt:formatNumber type="Number" groupingUsed="true" value="${item.value.product.price - item.value.product.price*item.value.product.discount/100}"/>đ
 			                         	
 			                         </div>
 			                         <div class="cart-container__item-oulprice">
-			                         	<fmt:formatNumber type="Number" groupingUsed="true" value="${item.value.totalPice}"/>đ
+			                         	<fmt:formatNumber type="Number" groupingUsed="true" value="${item.value.product.price}"/>đ
 			                         </div>
 			                     </div>
 			                     <div class="cart-container__item-update-SP">
@@ -77,37 +76,28 @@
 				             </li>
 				            </ul>
         		</c:forEach>
-	                     </div>
-        		</c:if>
-        		 <c:if test="${empty cart }">
-							<div class="container_giohang_isemty">
-	                            <img src="../assets/img/cart/giohangis_emty.png" alt="Hình giỏ hàng trống" class="giohang_rong">
-	                        </div>
-							<div>Giỏ hàng của bạn còn trống</div>
-							<a>Mua Ngay</a>
-			     </c:if>                
-            
-			
-                <h3 class="h3_title_from--giohang">
+	            	</div>
+	            	<h3 class="h3_title_from--giohang">
                     Thông tin mua hàng
                 </h3>
-                <div class="check-box__gioitinh">
+                <form:form action="/ProjectSmartphoneMVC/order" method="POST" modelAttribute="order">
+                	<div class="check-box__gioitinh">
                     <label for="" class="gender1">
-                        <input type="radio" value="male" name="gender" id="gender1" checked="checked">
+                        <form:radiobutton value="male" name="gender" id="gender1" checked="checked" path ="gender"/>
                         <span>Anh</span>
                     </label>
                     <label for="" class="gender0">
-                        <input type="radio" value="female" name="gender" id="gender0">
+                        <form:radiobutton value="female" name="gender" id="gender0" path ="gender"/>
                         <span>Chị</span>
                     </label>
                 </div>
                 <div class="form-input__muahang l-12 c-12">
                     <div class="form-input__hoten l-6 c-12">
-                        <input type="text" name="name" id="name" placeholder="Họ tên">
+                        <form:input type="text" name="name" id="name" required="true" placeholder="Họ tên" path = "user_name"/>
                         <br>
                     </div>
                     <div class="form-input__sdt l-6 c-12">
-                        <input type="text" name="telephone" id="telephone" placeholder="Số điện thoại">
+                        <form:input type="text" name="telephone" id="telephone" required="true" placeholder="Số điện thoại" path = "phone_number"/>
                         <br>
                     </div>
                 </div>
@@ -133,34 +123,30 @@
                         </p>
                         <div class="row-giohang__tab l-12 c-12">
                             <div class="l-6 c-12 select_giohang-group">
-                                <select name="matp" class="select_giohang-tinh" id="matp">
-                                    <option value="#" class="option-giohang__tinh1">
-                                    Tỉnh/Thành phố    
+                                <form:select name="matp" class="select_giohang-tinh" id="city" path = "tinh_tp">
+                                    <option value="" class="option-giohang__tinh1">
+                                    Tỉnh/Thành phố     
                                     </option>
-									
-                                </select>
+                                </form:select>
                             </div>
                             <div class="l-6 c-12 select_giohang-group">
-                                <select class="select_giohang-quan" name="maqh" id="maqh">
-                                    <option value="#" class="option_giohang-quan">
+                                <form:select class="select_giohang-quan" name="maqh" id="district" path = "quan_huyen">
+                                    <option value="" class="option_giohang-quan">
                                         Quận/Huyện
                                     </option>
-                                </select>
+                                </form:select>
                             </div>
                         </div>
                         <div class="row-giohang__tab-Phuong l-12 c-12">
                             <div class="l-6 c-12 select_giohang-group">
-                                <select name="phuongxa" id="phuongxa" class="select-giohang__phuong">
-                                    <option value="#" class="option-giohang__phuong">
+                                <form:select name="phuongxa" id="ward" class="select-giohang__phuong" path = "xa_phuong">
+                                    <option value="" class="option-giohang__phuong">
                                         Phường/Xã
                                     </option>
-                                </select>
+                                </form:select>
                             </div>
                             <div class="l-6 c-12 select_giohang-group">
-                                    <input name ="note" class="option-giohang__sonha" placeholder = "Số nhà tên đường">
-                                    </input>
-                                    <!-- Chỗ này nhập -->
-                               
+                                    <form:input name ="note" class="option-giohang__sonha" required="true" placeholder = "Số nhà tên đường" path = "note"/>
                             </div>
                         </div>
                     </div>
@@ -168,19 +154,27 @@
 				<div class="dathang-content">
 					<div class="header_dathang">
 						<span class="heading-text">Tổng tiền:</span>
-						<span class="heading-text__gia"><?php echo $total_money.'₫';?></span>
+						<span class="heading-text__gia"></span>
 					</div>
 					<div class="container_dieukien">
 						<span class="text-dieukien">Cần thanh toán trước 849.000₫ trong 24h sau khi đặt hàng để giữ hàng</span>
 					</div>
 					<div class="button-container__dathang">
-						<input type="submit" class = "button-container__dathang__btn" name ="btnDatHang" value ="Đặt Hàng"/>
+						<button type="submit" class = "button-container__dathang__btn" name ="btnDatHang">Đặt Hàng</button>
 					</div>
+                </form:form>
 					<div class="footer-dathang">
 						<span>Bạn có thể chọn hình thức thanh toán sau khi đặt hàng</span>
 					</div>
 				</div>
-			
+        		</c:if>
+        		 <c:if test="${empty cart }">
+							<div class="container_giohang_isemty">
+	                            <img src="<c:url value = "/assets/img/cart/giohangis_emty.png"/>" alt="Hình giỏ hàng trống" class="giohang_rong">
+	                        </div>
+							<div>Giỏ hàng của bạn còn trống</div>
+							<a href ="<c:url value="/trang-chu/"/>">Mua Ngay</a>
+			     </c:if>
         </div>
     </div>
 </div>
@@ -189,26 +183,48 @@
 </div>
 
 
-<script type = "text/Javascript">
-//xử lí select địa chỉ
-    $(document).ready(function() {
-        $('#matp').change(function() {
-            var a = $(this).val()
-			var a1='#'
-			$.get("xa_phuong.php",{a_ajax2:a1},function(data) {
-				$("#phuongxa").html(data);
-			})
-            $.get("quan_huyen.php",{a_ajax1:a},function(data) {
-                $("#maqh").html(data);
-                $('#maqh').change(function() {
-					var b = $(this).val()
-					$.get("xa_phuong.php",{a_ajax2:b},function(data) {
-						$("#phuongxa").html(data);
-					})
-				})
-            })
-        })
-    });
+<script src="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"/>"></script>
+<script type="text/javascript">
+	var citis = document.getElementById("city");
+	var districts = document.getElementById("district");
+	var wards = document.getElementById("ward");
+	var Parameter = {
+	  url: "https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json", 
+	  method: "GET", 
+	  responseType: "application/json", 
+	};
+	var promise = axios(Parameter);
+	promise.then(function (result) {
+	  renderCity(result.data);
+	});
+	
+	function renderCity(data) {
+	  for (const x of data) {
+	    citis.options[citis.options.length] = new Option(x.Name, x.Id);
+	  }
+	  citis.onchange = function () {
+	    district.length = 1;
+	    ward.length = 1;
+	    if(this.value != ""){
+	      const result = data.filter(n => n.Id === this.value);
+	
+	      for (const k of result[0].Districts) {
+	        district.options[district.options.length] = new Option(k.Name, k.Id);
+	      }
+	    }
+	  };
+	  district.onchange = function () {
+	    ward.length = 1;
+	    const dataCity = data.filter((n) => n.Id === citis.value);
+	    if (this.value != "") {
+	      const dataWards = dataCity[0].Districts.filter(n => n.Id === this.value)[0].Wards;
+	
+	      for (const w of dataWards) {
+	        wards.options[wards.options.length] = new Option(w.Name, w.Id);
+	      }
+	    }
+	  };
+	}
 </script>
 
 <content tag= "script">

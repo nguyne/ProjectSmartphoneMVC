@@ -86,6 +86,7 @@ public class authenController extends BaseController{
 	}
 	@RequestMapping(value = {"/authen/logout"}, method = RequestMethod.GET)
 	public ModelAndView logout(HttpSession session) {
+		session.removeAttribute("cart");
 		session.removeAttribute("idUser");
 		session.removeAttribute("roleID");
 		session.removeAttribute("fullname");

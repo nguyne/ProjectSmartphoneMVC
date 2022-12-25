@@ -2,11 +2,10 @@ package ProjectSmartphoneMVC.Dao;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.springframework.stereotype.Repository;
-
 import ProjectSmartphoneMVC.Dto.MapperProductOrderManage;
 import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
+import ProjectSmartphoneMVC.Entity.Order;
 
 @Repository
 public class ProductsOrdersManageDao extends BaseDao{
@@ -33,5 +32,13 @@ public class ProductsOrdersManageDao extends BaseDao{
 		String sql= "UPDATE orders SET status='"+status+"' WHERE id="+id;
 		int update = _jdbcTemplate.update(sql);
 		return update;
+	}
+	public int insert(Order order, String maHD) {
+		String sql = "INSERT INTO orders(maHD, user_id, user_name, gender, phone_number, tinh_tp, quan_huyen, xa_phuong, product, num, money, note, status) "
+				+ "VALUES ('"+maHD+"','"+order.getUser_id()+"','"+order.getUser_name()+"','"+order.getGender()+"','"+order.getPhone_number()+"','"+order.getTinh_tp()+"',"
+						+ "'"+order.getQuan_huyen()+"','"+order.getXa_phuong()+"','"+order.getProduct()+"','"+order.getNum()+"','"+order.getMoney()+"',"
+								+ "'"+order.getNote()+"','"+order.getStatus()+"')";
+		int insert = _jdbcTemplate.update(sql);
+		return insert;
 	}
 }

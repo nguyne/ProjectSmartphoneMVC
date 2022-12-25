@@ -10,7 +10,6 @@
 <body>
 <div class="grid wide">
     <div class="chitiet-chitiet ">
-   	<h1>${cart.size()}</h1>
 		<div class="form-active-chitiet ">
 			<c:forEach var = "itemproduct" items = "${product_Details}">
 			 	<form class = "" method = "GET" action = "/addCart/${itemproduct.id}">
@@ -59,7 +58,7 @@
 							<div class="chitiet-container-price">
 									<h3>Giá: </h3>
 										<div class="gia-chitiet">
-											<h4 class = "gia-chitiet__1"><fmt:formatNumber type="number" groupingUsed="true" value="${(itemproduct.price - itemproduct.price/100)}" /></h4><sup class = "sub-chitiet">₫</sup>
+											<h4 class = "gia-chitiet__1"><fmt:formatNumber type="number" groupingUsed="true" value="${(itemproduct.price - itemproduct.price*itemproduct.discount/100)}" /></h4><sup class = "sub-chitiet">₫</sup>
 											<h4 class = "gia-chitiet__2"><fmt:formatNumber type="number" groupingUsed="true" value="${itemproduct.price}" /></h4><sup>₫</sup>
 										</div>
 									
@@ -93,11 +92,7 @@
 														<span>Visa, Mastercart, JCB, Amex</span>
 														</button>
 													</div>
-													
-													<a href="<c:url value = "/addCart/${itemproduct.id}"/>" class="chitiet-container-type-btn">
-								                         Thêm vảo giỏ hàng
-								                     </a>
-												<input class="chitiet-container-type-btn" type="submit" name="add_cart" value="Thêm vào giỏ hàng">
+								                     <a href="<c:url value="/addCart/${itemproduct.id}"/>" class="chitiet-container-type-btn" name="addCart"> Thêm vào giỏ hàng </a>
 													<div class="chitiet-container-copy">
 														<button class= "chitiet-container-copy-link">
 															<span class="chitiet-container-boder">
@@ -219,311 +214,13 @@
 														</c:forEach>	
 																<div class="row_cmt--progess1">
 																	<div class="progress">
-																		<div class="progress-bar" style="width:'.round($pt,1).'%">
-
+																		<div class="progress-bar" style="width:100%">
 																		</div>
 																	</div>
 																</div>
 																<p class="phantram-text">
-																'.round($pt,1).'%
+																100%
 																</p>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:0%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															0%
-															</p>
-															
-														</div>
-
-														<!-- 2 -->
-														<div class="row_cmt--rating">
-														
-																<div class="phantram_sao">
-																	<div class="phantram_sao--p">
-																		<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																	</div>
-																</div>
-																
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:'.round($pt,1).'%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															'.round($pt,1).'%
-															</p>
-															
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:0%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															0%
-															</p>
-															
-														?>
-														</div>
-
-														<div class="row_cmt--rating">
-														
-																<div class="phantram_sao">
-																	<div class="phantram_sao--p">
-																		<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																	</div>
-																</div>
-																
-																<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-																
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:'.round($pt,1).'%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															'.round($pt,1).'%
-															</p>
-															
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:0%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															0%
-															</p>
-															
-														</div>
-
-														<div class="row_cmt--rating">
-														
-																<div class="phantram_sao">
-																	<div class="phantram_sao--p">
-																		<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																	</div>
-																</div>
-																
-															
-																<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-																
-															
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:'.round($pt,1).'%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															'.round($pt,1).'%
-															</p>
-															
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:0%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															0%
-															</p>
-															
-														</div>
-
-														<div class="row_cmt--rating">
-														
-																<div class="phantram_sao">
-																	<div class="phantram_sao--p">
-																		<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																	</div>
-																</div>
-																
-															
-															
-																<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-																
-														
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:'.round($pt,1).'%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															'.round($pt,1).'%
-															</p>
-															
-													
-															
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-fill.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="phantram_sao">
-																<div class="phantram_sao--p">
-																	<img src="../assets/img/Comment/star-empty.png" alt="" class="lazy-loaded">
-																</div>
-															</div>
-															<div class="row_cmt--progess1">
-																<div class="progress">
-																	<div class="progress-bar" style="width:0%">
-
-																	</div>
-																</div>
-															</div>
-															<p class="phantram-text">
-															0%
-															</p>
-															
 														</div>
 													</div>
 												</div>

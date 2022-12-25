@@ -9,10 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ProjectSmartphoneMVC.Dto.CartDto;
+import ProjectSmartphoneMVC.Entity.Order;
 import ProjectSmartphoneMVC.Service.user.CartServiceIml;
 
 @Controller
@@ -23,6 +23,7 @@ public class CartController extends BaseController{
 	
 	@RequestMapping(value = {"gio-hang"})
 	public ModelAndView Index() {
+		_mvShase.addObject("order", new Order());
 		_mvShase.setViewName("user/cart");
 		_mvShase.addObject("product_type", _homeService.getDataProduct_type());
 		_mvShase.addObject("product", _homeService.getDataProducts());
@@ -79,4 +80,5 @@ public class CartController extends BaseController{
 		}
 		return "redirect:/gio-hang/";
 	}
+	
 }
