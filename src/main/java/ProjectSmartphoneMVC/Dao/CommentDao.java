@@ -30,11 +30,11 @@ public class CommentDao extends BaseDao{
 		return list;
 	}
 	public HashMap<Integer, CommentReplyDto> viewCommentReply(HashMap<Integer, CommentReplyDto> commentReply, List<CommentDto> list, String idProduct){
-		CommentReplyDto itemComment = new CommentReplyDto();
 		for(int i=0;i<list.size();i++) {
 			List<CommentDto> list2 = getAllCommentsReply(idProduct,list.get(i).getId());
 			if(list2.size()>0) {
 				for(int j=0;j<list2.size();j++) {
+					CommentReplyDto itemComment = new CommentReplyDto();
 					itemComment.setParent_id(list2.get(j).getParent_id());
 					itemComment.setCommentDto(list2.get(j));
 					commentReply.put(list2.get(j).getId(), itemComment);
