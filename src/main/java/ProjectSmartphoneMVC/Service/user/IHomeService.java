@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ProjectSmartphoneMVC.Dto.CommentDto;
+import ProjectSmartphoneMVC.Dto.CommentReplyDto;
 import ProjectSmartphoneMVC.Dto.ProductHomeDto;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
+import ProjectSmartphoneMVC.Entity.Comment;
 import ProjectSmartphoneMVC.Entity.Order;
 import ProjectSmartphoneMVC.Entity.Users;
 import ProjectSmartphoneMVC.Entity.product_type;
@@ -40,4 +43,10 @@ public interface IHomeService {
 	public List<products> getDataProductPaginate(String id, int start, int limit);
 	@Autowired
 	public int insertOrder(Order order, String maHD);
+	@Autowired
+	public List<CommentDto> getAllComments(String id);
+	@Autowired
+	public List<CommentDto> getAllCommentsReply(String id, int parent_id);
+	@Autowired
+	public HashMap<Integer, CommentReplyDto> viewCommentReply(HashMap<Integer, CommentReplyDto> commentReply, List<CommentDto> list, String idProduct);
 }

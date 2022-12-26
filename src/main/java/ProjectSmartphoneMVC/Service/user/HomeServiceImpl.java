@@ -1,17 +1,22 @@
 package ProjectSmartphoneMVC.Service.user;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ProjectSmartphoneMVC.Dao.CommentDao;
 import ProjectSmartphoneMVC.Dao.Product_typeDao;
 import ProjectSmartphoneMVC.Dao.ProductsDao;
 import ProjectSmartphoneMVC.Dao.ProductsOrdersManageDao;
 import ProjectSmartphoneMVC.Dao.UsersManageDao;
+import ProjectSmartphoneMVC.Dto.CommentDto;
+import ProjectSmartphoneMVC.Dto.CommentReplyDto;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
+import ProjectSmartphoneMVC.Entity.Comment;
 import ProjectSmartphoneMVC.Entity.Order;
 import ProjectSmartphoneMVC.Entity.Users;
 import ProjectSmartphoneMVC.Entity.product_type;
@@ -26,6 +31,8 @@ public class HomeServiceImpl implements IHomeService{
 	private UsersManageDao usersManageDao;
 	@Autowired
 	private ProductsOrdersManageDao ordersManageDao;
+	@Autowired
+	private CommentDao commentDao;
 	
 	@Override
 	public List<products> getDataProducts() {
@@ -75,4 +82,18 @@ public class HomeServiceImpl implements IHomeService{
 	public int insertOrder(Order order, String maHD) {
 		return ordersManageDao.insert(order, maHD);
 	}
+	@Override
+	public List<CommentDto> getAllComments(String id) {
+		return commentDao.getAllComments(id);
+	}
+	@Override
+	public List<CommentDto> getAllCommentsReply(String id, int parent_id) {
+		return commentDao.getAllCommentsReply(id, parent_id);
+	}
+	@Override
+	public HashMap<Integer, CommentReplyDto> viewCommentReply(HashMap<Integer, CommentReplyDto> commentReply,
+			List<CommentDto> list, String idProduct) {
+		return commentDao.viewCommentReply(commentReply, list, idProduct);
+	}
+	
 }

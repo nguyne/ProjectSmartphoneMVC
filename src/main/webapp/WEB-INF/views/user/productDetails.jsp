@@ -180,7 +180,7 @@
 													<div class="row_cmt--1">
 														<p class="row_cmt--col">
 															<span>
-																/5
+																${stars}/5
 															</span>
 														</p>
 														<div class="comment_1--start">
@@ -319,32 +319,35 @@
 													</div>
 													
 												</div>
-												<div class="row l-3 c-3">
-													<div class="cmt_row--3">
-														<p class="cmt_row--3-p">
-															<a href="" class = "cmt_row--3-p__link">
-																<span class="cmt_row--text-1">
-																	Viết đánh giá
-																</span>
-																<span class="cmt_row--text-2">
-																	Đóng đánh giá
-																</span>
-															</a>
-														</p>
+												<c:if test = "${!empty(idUser)}">
+													<div class="row l-3 c-3">
+														<div class="cmt_row--3">
+															<p class="cmt_row--3-p">
+																<a href="" class = "cmt_row--3-p__link">
+																	<span class="cmt_row--text-1">
+																		Viết đánh giá
+																	</span>
+																	<span class="cmt_row--text-2">
+																		Đóng đánh giá
+																	</span>
+																</a>
+															</p>
+														</div>
 													</div>
-												</div>
-												<div class="row l-3 c-3">
-													<div class="cmt_row--3">
-														<p class="cmt_row--3-p">
-															<a href="../../../../../../WebDiDong_PTPMCN/DiThoaiThongMinh-PTPMCN/authen/login" class = "cmt_row--3-p__link">
-																<span class="cmt_row--text">
-																	Viết đánh giá
-																</span>
-															</a>
-														</p>
+												</c:if>
+												<c:if test = "${empty(idUser)}">
+													<div class="row l-3 c-3">
+														<div class="cmt_row--3">
+															<p class="cmt_row--3-p">
+																<a href="<c:url value="/authen/login"/>" class = "cmt_row--3-p__link">
+																	<span class="cmt_row--text">
+																		Viết đánh giá
+																	</span>
+																</a>
+															</p>
+														</div>
 													</div>
-												</div>
-												
+												</c:if>
 										</div>
 										<form method="POST" class="comment-form" id="commentForm">
 											<div class="comments-content__container">
@@ -379,7 +382,7 @@
 														<div class="l-6 m-6 c-12">
 															<div class="row-l-6__content">
 																<div class="row_form-control-1">
-																	<input type="text" class ="form-control-1 row_form-control-1__input" name="fullname" id="fullname" placeholder="Họ và tên" value="<?php echo $fullname?>">
+																	<input type="text" class ="form-control-1 row_form-control-1__input" name="fullname" id="fullname" placeholder="Họ và tên" value="${fullname }">
 																</div>
 																<div class="row_form-control-2">
 																	<input type="submit" class = "btn_submit-danhgia" name="submit" id="submit" value="Gửi đánh giá">
@@ -392,8 +395,100 @@
 										<input type="hidden" name="commentId" id="commentId" value="0" />
 									</form>
 										<!-- Code comment tại đây -->
-										<div class="comment_chitiet--hienthi" id="showComments"></div>
-										<script src = "../Javascript/comment.js"></script>
+										<script src = "<c:url value="/Javascript/comment.js"/>"></script>
+										<div class="comment_chitiet--hienthi" id="showComments">
+											<c:forEach var="itemCm" items="${comment}">
+												<div class="comment_item--hienthi">
+													<div class="comment_item-content">
+														<div class="comment_item--info">
+															<span class="comment_item--name">
+																<strong class="comment_item--name-text">
+																${itemCm.fullname}
+																</strong>
+															</span>
+															<div class="comment_item--sao_hienthi">
+															<c:if test="${itemCm.number_stars == 1}">
+																<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																<c:forEach var="a" items="[1,2,3,4]">
+																	<img src="<c:url value="/assets/img/Comment/star-empty.png"/>" class = "img-sao__danhgia" alt="">
+																</c:forEach>
+															</c:if>
+															<c:if test="${itemCm.number_stars == 2}">
+																<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																<c:forEach var="a" items="[1,2,3]">
+																	<img src="<c:url value="/assets/img/Comment/star-empty.png"/>" class = "img-sao__danhgia" alt="">
+																</c:forEach>
+															</c:if>
+															<c:if test="${itemCm.number_stars == 3}">
+																<c:forEach var="a" items="[1,2,3]">
+																	<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																</c:forEach>
+																<c:forEach var="a" items="[1,2]">
+																	<img src="<c:url value="/assets/img/Comment/star-empty.png"/>" class = "img-sao__danhgia" alt="">
+																</c:forEach>
+															</c:if>
+															<c:if test="${itemCm.number_stars == 4}">
+																<c:forEach var="a" items="[1,2,3,4]">
+																	<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																</c:forEach>
+																<img src="<c:url value="/assets/img/Comment/star-empty.png"/>" class = "img-sao__danhgia" alt="">
+															</c:if>
+															<c:if test="${itemCm.number_stars == 5}">
+																<c:forEach var="a" items="[1,2,3,4,5]">
+																	<img src="<c:url value="/assets/img/Comment/star-fill.png"/>" alt="">
+																</c:forEach>
+															</c:if>
+															</div>
+															<span class="comment_item--thoigian">${itemCm.time_comment}</span>
+														</div>
+														<c:if test="${!empty(roleID)}">
+															<c:if test="${roleID == 1 }">
+																<div class = "comment_item--admin__group">
+																	<a href="#" class = "comment_item--admin__xoa">Xóa</a>
+																	<button class = "comment_item--admin__traloi reply" id="">Trả lời</button>
+																</div>
+															</c:if>
+														</c:if>
+														<div class="comment_content--noidung">
+																${itemCm.content_comment}
+														</div>
+														<c:forEach var="itemReply" items="${commentReply}">
+															<c:if test="${itemReply.value.commentDto.parent_id == itemCm.id}">
+																<div class="wrapper-admin-rep">
+																	<div class="wrapper_comment_content">
+																		<div class="comment-info__admin">
+																			<div class="comment-info__admin-name">
+																				<span class="comment-info__admin-name-text">
+																					${itemReply.value.commentDto.fullname}
+																				</span>
+																				<span class="comment-info__admin-name-title">
+																					QTV
+																				</span>
+																			</div>
+																			<div class = "comment_item--admin__group">
+																			<c:if test="${!empty(roleID)}">
+																				<c:if test="${roleID == 1 }">
+																					<div class = "comment_item--admin__group">
+																						<a href="#" class = "comment_item--admin__xoa">Xóa</a>
+																					</div>
+																				</c:if>
+																			</c:if>
+																			<button class = "comment_item--admin__traloi reply" id="'.$reply->id.'">Trả lời</button>
+																			</div>
+																			<div class="comment_content-noidung__admin">
+																				${itemReply.value.commentDto.content_comment}
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</c:if>
+														</c:forEach>
+													</div>
+												</div>
+											</c:forEach>
+										</div>
+										
 									</div>
 								</div>
 							</div>
