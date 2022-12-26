@@ -12,7 +12,6 @@
     <div class="chitiet-chitiet ">
 		<div class="form-active-chitiet ">
 			<c:forEach var = "itemproduct" items = "${product_Details}">
-			 	<form class = "" method = "GET" action = "/addCart/${itemproduct.id}">
 					<div class="header-chitiet-content">
 									<h3>
 										${itemproduct.title}
@@ -33,8 +32,6 @@
 													<span class = "chitiet-container-tenhinh">Điểm nổi bật</span>
 												</a>
 											</li>
-											
-											
 											<li class="chitiet-container-below-imgimg">
 												<a href="#" class="chitiet-container-link">
 													<div class="chitiet-container-hinhnho">
@@ -43,7 +40,6 @@
 													
 												</a>
 											</li>
-											
 											<li class="chitiet-container-below-img">
 												<a href="#" class="chitiet-container-link">
 													<div class="chitiet-container-hinhnho">
@@ -92,7 +88,9 @@
 														<span>Visa, Mastercart, JCB, Amex</span>
 														</button>
 													</div>
-								                     <a href="<c:url value="/addCart/${itemproduct.id}"/>" class="chitiet-container-type-btn" name="addCart"> Thêm vào giỏ hàng </a>
+													<form:form action="/ProjectSmartphoneMVC/addCart/${itemproduct.id}" method="POST">
+														<input class="chitiet-container-type-btn" type="submit" name="add_cart" value="Thêm vào giỏ hàng"/>
+													</form:form>
 													<div class="chitiet-container-copy">
 														<button class= "chitiet-container-copy-link">
 															<span class="chitiet-container-boder">
@@ -181,7 +179,6 @@
 												<div class="row l-3 c-3">
 													<div class="row_cmt--1">
 														<p class="row_cmt--col">
-															
 															<span>
 																/5
 															</span>
@@ -222,7 +219,105 @@
 																100%
 																</p>
 														</div>
+														<div class="row_cmt--rating">
+														<c:forEach var = "a" items = "[1,2,3,4]">
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																		<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>
+														</c:forEach>
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																			<img src="<c:url value = "/assets/img/Comment/star-empty.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>	
+																<div class="row_cmt--progess1">
+																	<div class="progress">
+																		<div class="progress-bar" style="width:100%">
+																		</div>
+																	</div>
+																</div>
+																<p class="phantram-text">
+																100%
+																</p>
+														</div>
+														<div class="row_cmt--rating">
+														<c:forEach var = "a" items = "[1,2,3]">
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																		<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>
+														</c:forEach>
+														<c:forEach var ="a" items="[1,2]">
+															<div class="phantram_sao">
+																		<div class="phantram_sao--p">
+																				<img src="<c:url value = "/assets/img/Comment/star-empty.png"/>" alt="" class="lazy-loaded">
+																		</div>	
+																	</div>	
+														</c:forEach>
+																
+																<div class="row_cmt--progess1">
+																	<div class="progress">
+																		<div class="progress-bar" style="width:100%">
+																		</div>
+																	</div>
+																</div>
+																<p class="phantram-text">
+																100%
+																</p>
+														</div>
+														<div class="row_cmt--rating">
+														<c:forEach var = "a" items = "[1,2]">
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																		<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>
+														</c:forEach>
+														<c:forEach var = "a" items="[1,2,3]">
+														<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																			<img src="<c:url value = "/assets/img/Comment/star-empty.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>
+														</c:forEach>
+																<div class="row_cmt--progess1">
+																	<div class="progress">
+																		<div class="progress-bar" style="width:100%">
+																		</div>
+																	</div>
+																</div>
+																<p class="phantram-text">
+																100%
+																</p>
+														</div>
+														<div class="row_cmt--rating">
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																		<img src="<c:url value = "/assets/img/Comment/star-fill.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>
+																<c:forEach var = "a" items = "[1,2,3,4]">
+																<div class="phantram_sao">
+																	<div class="phantram_sao--p">
+																			<img src="<c:url value = "/assets/img/Comment/star-empty.png"/>" alt="" class="lazy-loaded">
+																	</div>	
+																</div>	
+																</c:forEach>
+																<div class="row_cmt--progess1">
+																	<div class="progress">
+																		<div class="progress-bar" style="width:100%">
+																		</div>
+																	</div>
+																</div>
+																<p class="phantram-text">
+																100%
+																</p>
+														</div>
 													</div>
+													
 												</div>
 												<div class="row l-3 c-3">
 													<div class="cmt_row--3">
@@ -234,9 +329,6 @@
 																<span class="cmt_row--text-2">
 																	Đóng đánh giá
 																</span>
-																<!-- <span class="cmt_row--text">
-																	Đóng bình luận
-																</span> -->
 															</a>
 														</p>
 													</div>
@@ -423,6 +515,5 @@
 	btnclodeModel.addEventListener('click',closeModelChiTiet);
 
 </script>
-<!--<script type="text/javascript" src = "<c:url value = "Javascript/chitietsanpham.js"/>"></script> -->
 </body>
 </html>
