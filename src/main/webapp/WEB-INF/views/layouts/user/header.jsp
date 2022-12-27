@@ -178,7 +178,7 @@
 
                                 <li>
                                     <a href="" class="nav__mobile-link-carticon">
-                                    <img src="<c:url value = "/assets/img/logo.svg"/>img/responsivemobi/carticon_mobi.svg" alt="icon logo cart" class="img-responsive">
+                                    <img src="<c:url value = "/assets/img/logo.svg"/>" alt="icon logo cart" class="img-responsive">
                                         <span class = "textgiohang">Giỏ hàng</span>
                                         <span class="nbc">
                                         </span>

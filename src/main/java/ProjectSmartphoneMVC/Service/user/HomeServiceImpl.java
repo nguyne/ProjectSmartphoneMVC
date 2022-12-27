@@ -95,5 +95,13 @@ public class HomeServiceImpl implements IHomeService{
 			List<CommentDto> list, String idProduct) {
 		return commentDao.viewCommentReply(commentReply, list, idProduct);
 	}
+	@Override
+	public int insertComment(Comment comment) {
+		return commentDao.insertComment(comment);
+	}
+	@Override
+	public int deleteComment(String id) {
+		return commentDao.deleteComment(id);
+	}
 	
 }

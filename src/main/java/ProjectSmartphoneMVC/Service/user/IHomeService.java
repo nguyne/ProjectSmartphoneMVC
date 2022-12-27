@@ -49,4 +49,8 @@ public interface IHomeService {
 	public List<CommentDto> getAllCommentsReply(String id, int parent_id);
 	@Autowired
 	public HashMap<Integer, CommentReplyDto> viewCommentReply(HashMap<Integer, CommentReplyDto> commentReply, List<CommentDto> list, String idProduct);
+	@Autowired
+	public int insertComment(Comment comment);
+	@Autowired
+	public int deleteComment(String id);
 }

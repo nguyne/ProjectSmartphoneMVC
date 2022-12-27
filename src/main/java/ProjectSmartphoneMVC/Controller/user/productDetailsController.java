@@ -3,19 +3,28 @@ package ProjectSmartphoneMVC.Controller.user;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.objenesis.instantiator.basic.NewInstanceInstantiator;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.protobuf.Value;
+
 import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
+import ProjectSmartphoneMVC.Entity.Comment;
 
 @Controller
 public class productDetailsController extends BaseController{
 	@RequestMapping(value = "/product" , method = RequestMethod.GET)
 	public ModelAndView ProductDetails(@RequestParam String id) {
+		_mvShase.addObject("insertCom", new Comment());
 		_mvShase.setViewName("user/productDetails");
 		_mvShase.addObject("product_Details", _homeService.getDataProductsDetail(id));
 		_mvShase.addObject("product_discounttext",_homeService.getDataDiscountText(id));
@@ -36,6 +45,25 @@ public class productDetailsController extends BaseController{
 		else {
 			_mvShase.addObject("stars", 0);
 		}
+		return _mvShase;
+	}
+	
+	@RequestMapping(value = "/insertComment/{id}", method = RequestMethod.POST)
+	public ModelAndView insertComment(@ModelAttribute("insertCom") Comment comment, @PathVariable String id, HttpSession session) {
+		if(comment.getNumber_stars() == 0) {
+			comment.setNumber_stars(5);
+		}
+		comment.setProduct_id(Integer.parseInt(id));
+		int userID =Integer.parseInt(session.getAttribute("idUser").toString());
+		comment.setUser_id(userID);
+		_homeService.insertComment(comment);
+		_mvShase.setViewName("redirect:/product?id="+id);
+		return _mvShase;
+	}
+	@RequestMapping(value= "/deleteComment/{idComment}/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteComment(@PathVariable String idComment, @PathVariable String id) {
+		_homeService.deleteComment(idComment);
+		_mvShase.setViewName("redirect:/product?id="+id);
 		return _mvShase;
 	}
 }

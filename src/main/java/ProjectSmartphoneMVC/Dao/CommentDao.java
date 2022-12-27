@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
 import ProjectSmartphoneMVC.Dto.MapperCommentDto;
+import ProjectSmartphoneMVC.Entity.Comment;
 
 @Repository
 public class CommentDao extends BaseDao{
@@ -42,5 +43,16 @@ public class CommentDao extends BaseDao{
 			}
 		}
 		return commentReply;
+	}
+	public int insertComment(Comment comment) {
+		String sql = "INSERT INTO comment(parent_id, user_id, product_id, content_comment, number_stars) "
+				+ "VALUES ('"+comment.getParent_id()+"','"+comment.getUser_id()+"','"+comment.getProduct_id()+"','"+comment.getContent_comment()+"','"+comment.getNumber_stars()+"')";
+		int count = _jdbcTemplate.update(sql);
+		return count;
+	}
+	public int deleteComment(String id) {
+		String sql = "DELETE FROM comment WHERE id ='"+id+"'";
+		int count = _jdbcTemplate.update(sql);
+		return count;
 	}
 }

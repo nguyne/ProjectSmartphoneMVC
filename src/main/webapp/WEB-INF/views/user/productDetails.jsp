@@ -349,7 +349,7 @@
 													</div>
 												</c:if>
 										</div>
-										<form method="POST" class="comment-form" id="commentForm">
+										<form:form action="/ProjectSmartphoneMVC/insertComment/${itemproduct.id}" method="POST" modelAttribute="insertCom" class="comment-form">
 											<div class="comments-content__container">
 												<div class="comment-form">
 													<div class="comment-form__content">
@@ -359,30 +359,30 @@
 															</div>
 														</div>
 														<div id="rating">
-															<input type="radio" id="star5" name="rating" value="5" />
+															<form:radiobutton id="star5" name="rating" value="5" path="number_stars"/>
 															<label class = "full" for="star5" title="Awesome - 5 stars"></label>
 														
-															<input type="radio" id="star4" name="rating" value="4" />
+															<form:radiobutton id="star4" name="rating" value="4" path ="number_stars"/>
 															<label class = "full" for="star4" title="Pretty good - 4 stars"></label>
 														
-															<input type="radio" id="star3" name="rating" value="3" />
+															<form:radiobutton id="star3" name="rating" value="3" path ="number_stars"/>
 															<label class = "full" for="star3" title="Meh - 3 stars"></label>
 														
-															<input type="radio" id="star2" name="rating" value="2" />
+															<form:radiobutton id="star2" name="rating" value="2" path ="number_stars"/>
 															<label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
 														
-															<input type="radio" id="star1" name="rating" value="1" />
+															<form:radiobutton id="star1" name="rating" value="1" path ="number_stars"/>
 															<label class = "full" for="star1" title="Sucks big time - 1 star"></label>
 														</div>
 													</div>
 													<div class="comment-form__form-content">
 														<div class="l-6 m-6 c-12">
-															<textarea class ="form-control" placeholder="Nội dung đánh giá của bạn" name="comment" id="comment"></textarea>
+															<form:textarea class ="form-control" placeholder="Nội dung đánh giá của bạn" name="comment" id="comment" path="content_comment"></form:textarea>
 														</div>
 														<div class="l-6 m-6 c-12">
 															<div class="row-l-6__content">
 																<div class="row_form-control-1">
-																	<input type="text" class ="form-control-1 row_form-control-1__input" name="fullname" id="fullname" placeholder="Họ và tên" value="${fullname }">
+																	<input type="text" class ="form-control-1 row_form-control-1__input" name="fullname" id="fullname" placeholder="Họ và tên" value="${fullname }"/>
 																</div>
 																<div class="row_form-control-2">
 																	<input type="submit" class = "btn_submit-danhgia" name="submit" id="submit" value="Gửi đánh giá">
@@ -392,8 +392,8 @@
 													</div>
 												</div>
 											</div>
-										<input type="hidden" name="commentId" id="commentId" value="0" />
-									</form>
+										<form:input type="hidden" name="commentId" id="commentId" value="0" path="parent_id"/>
+									</form:form>
 										<!-- Code comment tại đây -->
 										<script src = "<c:url value="/Javascript/comment.js"/>"></script>
 										<div class="comment_chitiet--hienthi" id="showComments">
@@ -445,8 +445,8 @@
 														<c:if test="${!empty(roleID)}">
 															<c:if test="${roleID == 1 }">
 																<div class = "comment_item--admin__group">
-																	<a href="#" class = "comment_item--admin__xoa">Xóa</a>
-																	<button class = "comment_item--admin__traloi reply" id="">Trả lời</button>
+																	<a href="<c:url value="/deleteComment/${itemCm.id}/${itemproduct.id }"/>" class = "comment_item--admin__xoa">Xóa</a>
+																	<button class = "comment_item--admin__traloi reply" id="${itemCm.id }">Trả lời</button>
 																</div>
 															</c:if>
 														</c:if>
@@ -462,19 +462,18 @@
 																				<span class="comment-info__admin-name-text">
 																					${itemReply.value.commentDto.fullname}
 																				</span>
-																				<span class="comment-info__admin-name-title">
-																					QTV
-																				</span>
+																					<span class="comment-info__admin-name-title">
+																						QTV
+																					</span>
 																			</div>
 																			<div class = "comment_item--admin__group">
 																			<c:if test="${!empty(roleID)}">
 																				<c:if test="${roleID == 1 }">
 																					<div class = "comment_item--admin__group">
-																						<a href="#" class = "comment_item--admin__xoa">Xóa</a>
+																						<a href="<c:url value="/deleteComment/${itemReply.value.commentDto.id}/${itemproduct.id }"/>" class = "comment_item--admin__xoa">Xóa</a>
 																					</div>
 																				</c:if>
 																			</c:if>
-																			<button class = "comment_item--admin__traloi reply" id="'.$reply->id.'">Trả lời</button>
 																			</div>
 																			<div class="comment_content-noidung__admin">
 																				${itemReply.value.commentDto.content_comment}
@@ -609,6 +608,15 @@
 	btnHienModel.addEventListener('click',showModelChiTiet);
 	btnclodeModel.addEventListener('click',closeModelChiTiet);
 
+</script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+	$(document).on('click', '.reply', function(){
+		var commentId = $(this).attr("id");
+		$('#commentId').val(commentId);
+		$('#comment').focus();
+	});
+});
 </script>
 </body>
 </html>
