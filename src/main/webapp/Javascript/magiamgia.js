@@ -47,7 +47,7 @@ function handleProductSale(data) {
                     },1000);
                 })(i);
                 return`
-                    <a href ="../../../../WebDiDong_PTPMCN/DiThoaiThongMinh-PTPMCN/chitietSP/index.php?id=${item.id_product_sale}&sale=1" class="col l-2-4 m-4 c-6 box-sale-products-item__box" style="text-decoration: none;">
+                    <a href ="/ProjectSmartphoneMVC/product?id=${item.id_product_sale}&sale=1" class="col l-2-4 m-4 c-6 box-sale-products-item__box" style="text-decoration: none;">
                         
                         <div class="home-product-item">
                             <div class="home-product-item-img" style="background-image:url(/ProjectSmartphoneMVC/image/${item.thumnail});">

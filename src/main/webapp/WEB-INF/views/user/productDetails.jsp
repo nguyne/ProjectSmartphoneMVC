@@ -1,4 +1,3 @@
-<%@page import="org.springframework.web.bind.annotation.RequestParam"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="/WEB-INF/views/layouts/user/tablib.jsp" %>
@@ -36,7 +35,7 @@
 											<li class="chitiet-container-below-imgimg">
 												<a href="#" class="chitiet-container-link">
 													<div class="chitiet-container-hinhnho">
-														<img src="../assets/photos/'.$img->img_desct.'" alt="Điện thoại hình ảnh ở dưới" class="chitiet-container-below-img-con">
+														<img src="" alt="Điện thoại hình ảnh ở dưới" class="chitiet-container-below-img-con">
 													</div>
 													
 												</a>
@@ -53,11 +52,38 @@
 								</div>
 						<div class="chitiet-container-embrace l-5 m-12 c-12">
 							<div class="chitiet-container-price">
-									<h3>Giá: </h3>
-										<div class="gia-chitiet">
-											<h4 class = "gia-chitiet__1"><fmt:formatNumber type="number" groupingUsed="true" value="${(itemproduct.price - itemproduct.price*itemproduct.discount/100)}" /></h4><sup class = "sub-chitiet">₫</sup>
-											<h4 class = "gia-chitiet__2"><fmt:formatNumber type="number" groupingUsed="true" value="${itemproduct.price}" /></h4><sup>₫</sup>
-										</div>
+							
+									<c:if test = "${sale == 1 }">
+										<div class = "flashsale">
+													<div class = "top_sale">
+															<img src ="<c:url value = "/assets/img/magiamgia/flash.svg"/>"/>
+														<div class = "right_sale">
+															<img src ="<c:url value = "/assets/img/magiamgia/clock.svg"/>"/>
+															<p class = "coun_down">
+																"Kết thúc trong"
+																<span class = "time_coundown">
+																	<span class = "number_ number_day"></span>
+																	<span class = "number_ number_hour"></span>
+																	<span class = "number_ number_mili"></span>
+																	<span class = "number_ number_secon"></span>
+																</span>
+															</p>
+														</div>
+													</div>
+													<div class="mid_sale">
+														<span class = "price_now"><fmt:formatNumber type="number" groupingUsed="true" value="${itemproduct.price}" /></span><sup class = "sub-chitiet">đ</sup>
+														<span class = "_price"><fmt:formatNumber type="number" groupingUsed="true" value="${(itemproduct.price - itemproduct.price*itemproduct.discount/100)}" />đ</span>
+														<span class = "discount_sale">${itemproduct.discount}%</span>
+													</div>
+												</div>
+										</c:if>
+										<c:if test = "${sale == 0 }">
+											<h3>Giá: </h3>
+											<div class="gia-chitiet">
+												<h4 class = "gia-chitiet__1"><fmt:formatNumber type="number" groupingUsed="true" value="${(itemproduct.price - itemproduct.price*itemproduct.discount/100)}" /></h4><sup class = "sub-chitiet">₫</sup>
+												<h4 class = "gia-chitiet__2"><fmt:formatNumber type="number" groupingUsed="true" value="${itemproduct.price}" /></h4><sup>₫</sup>
+											</div>
+										</c:if>
 									
 									</div>
 									<div class="chitiet-container-nhandat">
@@ -618,6 +644,56 @@ $(document).ready(function(){
 		$('#comment').focus();
 	});
 });
+</script>
+
+<script type = "text/Javascript">
+	var elementProductsale = document.querySelector('.time_coundown');
+	var id = "<%= request.getParameter("id")%>";
+var APIurl_sale = 'http://localhost/WebDiDong_PTPMCN/DiThoaiThongMinh-PTPMCN/PHPREST/api/sale/select_single.php?id='+id;
+
+function start() {
+    getProductSale(handleProductSale);
+}
+start();
+
+function getProductSale (callback) {
+    fetch(APIurl_sale)
+        .then(function (respon) {
+            return respon.json();
+        })
+        .then(callback);
+}
+function handleProductSale(data) {
+    var elementProductsale = document.querySelector('.time_coundown');
+    
+    var html = data.data.map(function (item) {
+    var noW1 = new Date().getTime();
+    var timeStart = new Date(item.time_sale).getTime();
+    var timeStop = new Date(item.time_salestop).getTime();//xem lấy time từ server..
+        if(noW1>=timeStart && noW1 <= timeStop){
+            setInterval(function () {
+                var noW = new Date().getTime();
+                var full = new Date(item.time_salestop).getTime();
+                var D = full  -  noW;
+                var Days =  Math.floor(D/(1000*60*60*24));
+                var hours =  Math.floor(D/(1000*60*60));
+                var minutes =  Math.floor(D/(1000*60));
+                var seconds =  Math.floor(D/(1000));
+                hours %=24
+                minutes %=60
+                seconds %= 60
+                
+                document.querySelector(".number_day").innerText = Days
+                document.querySelector(".number_hour").innerText = hours
+                document.querySelector(".number_mili").innerText = minutes
+                document.querySelector(".number_secon").innerText = seconds
+                
+            },1000);
+            
+        }
+    });
+
+}
 </script>
 </body>
 </html>

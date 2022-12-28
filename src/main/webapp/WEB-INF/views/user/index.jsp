@@ -23,7 +23,7 @@
        		<div class="grid-row">
        		<c:forEach var="item_product" items="${product}">
        			<c:if test = "${item_type.id == item_product.product_type}"> <!-- xem lại phần này, nếu có cách tối ưu hơn -->
-	       			<a href ="<c:url value ="/product?id=${item_product.id}"/>" class="chitiet-item__product col l-2-4 m-4 c-6" style="text-decoration: none;">
+	       			<a href ="<c:url value ="/product?id=${item_product.id}&sale=0"/>" class="chitiet-item__product col l-2-4 m-4 c-6" style="text-decoration: none;">
 	                    <div class="home-product-item">
 	                            <div class="home-product-item-img" style='background-image:url(<c:url value ="/image/${item_product.thumnail}"/>)'></div>
 	                            <h4 class="home-product-item-name">${item_product.title }</h4>
