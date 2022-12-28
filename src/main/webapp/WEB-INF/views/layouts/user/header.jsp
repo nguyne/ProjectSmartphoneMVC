@@ -33,14 +33,14 @@
                                 <li class="a">Hải Dương</li>
                             </ul>
                         </div>
-                        <form method="post">
+                        <form:form action="/ProjectSmartphoneMVC/search" method="POST">
                             <div class="header__search">
                                 <div class="header__search-input-wrap">
-                                    <input type="text" name="searchInput"  class="header__search-input" placeholder="Bạn tìm gì...">
+                                    <input type="text" name="searchInput" value = "${nameseach}"  class="header__search-input" placeholder="Bạn tìm gì...">
                                 </div>
                                 <input type="submit" id ="searchbt_simple" name="ok" value ="Search"/>
                             </div>
-                        </form>
+                      </form:form>
                         
                     </div>
                     <div class="header__navbar-item header__navbar-rightmenu">
@@ -121,7 +121,7 @@
 	                               </li> 
 
                                         <li> 
-                                            <a class="nav__mobile-link nav__mobile-link__account" href="#">
+                                            <a class="nav__mobile-link nav__mobile-link__account" href="<c:url value = "/donmua"/>">
                                                 <i class="fa-solid fa-user"></i>
                                                 <span class="nav__mobile-link-login">Đơn hàng đã mua</span>
                                             </a>
@@ -193,7 +193,7 @@
                                <div class="header__navbar-item-box-user">
                                    <ul class="header__navbar-item-box-user-list">
                                        <li class="header__navbar-item-box-user-item"> <a href="#">Đổi mật khẩu</a></li>
-                                       <li class="header__navbar-item-box-user-item"> <a href="#">Đơn hàng đã mua</a></li>
+                                       <li class="header__navbar-item-box-user-item"> <a href="<c:url value = "/donmua"/>">Đơn hàng đã mua</a></li>
                                        <li class="header__navbar-item-box-user-item"><a href="<c:url value="/authen/logout"/>" >Đăng xuất</a></li>
                                        <c:if test="${roleID == 1}">
                                        <li class="header__navbar-item-box-user-item"><a href="<c:url value="/admin/"/>" >Admin</a></li>

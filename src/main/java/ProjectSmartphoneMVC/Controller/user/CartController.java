@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import ProjectSmartphoneMVC.Dto.CartDto;
@@ -36,8 +37,8 @@ public class CartController extends BaseController{
 		return "redirect:"+request.getHeader("Refere");
 	}
 	
-	@RequestMapping(value = {"/addCart/{id}"})
-	public String AddCart(HttpServletRequest request,HttpSession session, @PathVariable String id) {
+	@RequestMapping(value = {"/addCart/{id}/{sale}"})
+	public String AddCart(HttpServletRequest request,HttpSession session, @PathVariable String id, @PathVariable String sale) {
 		HashMap<String, CartDto> cart = (HashMap<String, CartDto>)session.getAttribute("cart");
 		if(cart == null) {
 			cart = new HashMap<String, CartDto>();
@@ -48,7 +49,7 @@ public class CartController extends BaseController{
 		session.setAttribute("totalpriceCart", cartService.totalPrice(cart));
 		//chuyển về trang hiện tại đã click
 //		return "redirect:"+request.getHeader("Refere");
-		return "redirect:/product?id="+id;
+		return "redirect:/product?id="+id+"&sale="+sale;
 	}
 	
 	@RequestMapping(value = {"editCart/{id}/{quanty}"})

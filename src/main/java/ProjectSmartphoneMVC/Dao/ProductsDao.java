@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import ProjectSmartphoneMVC.Dto.Discount_TextDtoMapper;
+import ProjectSmartphoneMVC.Dto.InfomationProduct;
 import ProjectSmartphoneMVC.Dto.MapperProductManage;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.ProductsDtoMapper;
@@ -72,11 +73,28 @@ public class ProductsDao extends BaseDao{
 		return list;
 	}
 	
+	public List<chitietsp> GetDatainfomationProduct(String id){
+		List<chitietsp> list = new ArrayList<chitietsp>();
+		String sql = "SELECT * FROM thongtinsp WHERE product_id ="+id;
+		list = _jdbcTemplate.query(sql, new InfomationProduct());
+		return list;
+	}
+	
+	public List<products> FindProduct(String name){
+		List<products> list = new ArrayList<products>();
+		String sql = "SELECT * FROM product WHERE title LIKE '%"+name+"%' or price like '%"+name+"%'";
+		list = _jdbcTemplate.query(sql, new MapperProduct());
+		return list;
+	}
+	
 	public products FindDataProductType(long id){
 		String sql = "SELECT * FROM product WHERE product_type ="+id;
 		products product = _jdbcTemplate.queryForObject(sql, new MapperProduct());
 		return product;
 	} 
+	
+	
+	
 	//lấy sản phẩm theo loại với số lượng trên 1 page.
 	public List<products> getDataProductPaginate(String id, int start, int limit){
 		List<products> list = new ArrayList<products>();

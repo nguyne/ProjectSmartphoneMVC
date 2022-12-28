@@ -13,7 +13,9 @@ import ProjectSmartphoneMVC.Dao.ProductsOrdersManageDao;
 import ProjectSmartphoneMVC.Dao.UsersManageDao;
 import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
+import ProjectSmartphoneMVC.Dto.InfomationProduct;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
+import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
 import ProjectSmartphoneMVC.Entity.Comment;
@@ -103,5 +105,14 @@ public class HomeServiceImpl implements IHomeService{
 	public int deleteComment(String id) {
 		return commentDao.deleteComment(id);
 	}
+	@Override
+	public List<chitietsp> GetDatainfomationProduct(String id) {
+		return productsDao.GetDatainfomationProduct(id);
+	}
+	@Override
+	public List<products> FindProduct(String name) {
+		return productsDao.FindProduct(name);
+	}
+	
 	
 }

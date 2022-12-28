@@ -14,7 +14,7 @@
 }
 
 .title_sale-product {
-    background: url(../../../assets/img/magiamgia/bgr_pc.jpg) left 0 top 0 no-repeat;
+    background: url(/ProjectSmartphoneMVC/assets/img/magiamgia/bgr_pc.jpg) left 0 top 0 no-repeat;
     padding: 24px 0 42px ;
     font-size: 24px;
     text-transform: uppercase;

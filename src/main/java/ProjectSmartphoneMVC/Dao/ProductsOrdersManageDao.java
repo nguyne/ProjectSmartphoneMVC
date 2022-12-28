@@ -41,4 +41,6 @@ public class ProductsOrdersManageDao extends BaseDao{
 		int insert = _jdbcTemplate.update(sql);
 		return insert;
 	}
+	
+	
 }

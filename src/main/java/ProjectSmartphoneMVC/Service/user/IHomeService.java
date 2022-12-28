@@ -10,6 +10,7 @@ import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
 import ProjectSmartphoneMVC.Dto.ProductHomeDto;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
+import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
 import ProjectSmartphoneMVC.Entity.Comment;
@@ -53,4 +54,9 @@ public interface IHomeService {
 	public int insertComment(Comment comment);
 	@Autowired
 	public int deleteComment(String id);
+	@Autowired
+	public List<chitietsp> GetDatainfomationProduct(String id);
+	@Autowired
+	public List<products> FindProduct(String name);
+	
 }
