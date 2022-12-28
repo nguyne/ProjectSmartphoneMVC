@@ -3,6 +3,8 @@ package ProjectSmartphoneMVC.Dao;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+
+import ProjectSmartphoneMVC.Dto.MapperOrderUser;
 import ProjectSmartphoneMVC.Dto.MapperProductOrderManage;
 import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
 import ProjectSmartphoneMVC.Entity.Order;
@@ -40,5 +42,14 @@ public class ProductsOrdersManageDao extends BaseDao{
 								+ "'"+order.getNote()+"','"+order.getStatus()+"')";
 		int insert = _jdbcTemplate.update(sql);
 		return insert;
+	}
+	
+	public List<ProductsOrdersManageDto> getOderByUser(String idUser){
+		List<ProductsOrdersManageDto> list = new ArrayList<ProductsOrdersManageDto>();
+		String sql = "SELECT o.id, o.maHD, p.title, p.thumnail, o.user_name, o.gender, o.phone_number, o.note, o.num, o.money, o.created_at, s.name_status "
+				+ "FROM orders o LEFT JOIN product p ON o.product = p.id LEFT JOIN status_orders s ON o.status = s.id "
+				+ "WHERE o.user_id = '"+idUser+"' ORDER BY o.created_at DESC";
+		list = _jdbcTemplate.query(sql, new MapperOrderUser());
+		return list;
 	}
 }

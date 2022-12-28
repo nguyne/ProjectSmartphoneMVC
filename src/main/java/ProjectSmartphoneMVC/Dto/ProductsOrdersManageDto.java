@@ -7,7 +7,8 @@ public class ProductsOrdersManageDto {
 	private String maHD;
 	private String title;
 	private String user_name; 
-	private String gender; 
+	private String gender;
+	private String thumnail;
 	private String phone_number;
 	private String note; 
 	private String nameTP; 
@@ -103,6 +104,12 @@ public class ProductsOrdersManageDto {
 	}
 	public void setName_status(String name_status) {
 		this.name_status = name_status;
+	}
+	public String getThumnail() {
+		return thumnail;
+	}
+	public void setThumnail(String thumnail) {
+		this.thumnail = thumnail;
 	}
 	
 	

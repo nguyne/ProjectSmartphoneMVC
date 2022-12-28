@@ -14,6 +14,7 @@ import ProjectSmartphoneMVC.Dao.UsersManageDao;
 import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
+import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
 import ProjectSmartphoneMVC.Dto.chitietsp;
 import ProjectSmartphoneMVC.Entity.Comment;
@@ -102,6 +103,10 @@ public class HomeServiceImpl implements IHomeService{
 	@Override
 	public int deleteComment(String id) {
 		return commentDao.deleteComment(id);
+	}
+	@Override
+	public List<ProductsOrdersManageDto> getOderByUser(String idUser) {
+		return ordersManageDao.getOderByUser(idUser);
 	}
 	
 }

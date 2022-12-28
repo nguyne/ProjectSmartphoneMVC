@@ -121,7 +121,7 @@
 	                               </li> 
 
                                         <li> 
-                                            <a class="nav__mobile-link nav__mobile-link__account" href="#">
+                                            <a class="nav__mobile-link nav__mobile-link__account" href="<c:url value="/donmua"/>">
                                                 <i class="fa-solid fa-user"></i>
                                                 <span class="nav__mobile-link-login">Đơn hàng đã mua</span>
                                             </a>
@@ -193,7 +193,7 @@
                                <div class="header__navbar-item-box-user">
                                    <ul class="header__navbar-item-box-user-list">
                                        <li class="header__navbar-item-box-user-item"> <a href="#">Đổi mật khẩu</a></li>
-                                       <li class="header__navbar-item-box-user-item"> <a href="#">Đơn hàng đã mua</a></li>
+                                       <li class="header__navbar-item-box-user-item"> <a href="<c:url value="/donmua"/>">Đơn hàng đã mua</a></li>
                                        <li class="header__navbar-item-box-user-item"><a href="<c:url value="/authen/logout"/>" >Đăng xuất</a></li>
                                        <c:if test="${roleID == 1}">
                                        <li class="header__navbar-item-box-user-item"><a href="<c:url value="/admin/"/>" >Admin</a></li>
