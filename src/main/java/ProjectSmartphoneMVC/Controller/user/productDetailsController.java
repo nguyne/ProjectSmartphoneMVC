@@ -23,13 +23,15 @@ import ProjectSmartphoneMVC.Entity.Comment;
 @Controller
 public class productDetailsController extends BaseController{
 	@RequestMapping(value = "/product" , method = RequestMethod.GET)
-	public ModelAndView ProductDetails(@RequestParam String id,@RequestParam String sale) {
+	public ModelAndView ProductDetails(@RequestParam String id, @RequestParam String sale) {
 		_mvShase.addObject("insertCom", new Comment());
 		_mvShase.setViewName("user/productDetails");
 		_mvShase.addObject("product_Details", _homeService.getDataProductsDetail(id));
 		_mvShase.addObject("product_discounttext",_homeService.getDataDiscountText(id));
 		_mvShase.addObject("product_configuration",_homeService.getDataConfiguration(id));
 		_mvShase.addObject("InfomationProduct",_homeService.GetDatainfomationProduct(id));
+		_mvShase.addObject("thongtinchung",_homeService.GetDataThongTinChung(id));
+		_mvShase.addObject("tienich",_homeService.GetDataTienIch(id));
 		_mvShase.addObject("comment", _homeService.getAllComments(id));
 		_mvShase.addObject("sale", sale);
 		List<CommentDto> list = _homeService.getAllComments(id);

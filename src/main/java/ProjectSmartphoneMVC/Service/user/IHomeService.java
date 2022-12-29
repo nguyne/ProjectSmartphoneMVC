@@ -59,4 +59,14 @@ public interface IHomeService {
 	@Autowired
 	public List<products> FindProduct(String name);
 	
+	@Autowired
+	public List<ProductsOrdersManageDto> getOderByUser(String idUser);
+	@Autowired
+	public List<chitietsp> GetDataThongTinChung(String id);
+	@Autowired
+	public List<chitietsp> GetDataTienIch(String id);
+	@Autowired
+	public int UpdatePass(Users users);
+	@Autowired
+	public List<Users> getDataByUsers(String id, String pass);
 }

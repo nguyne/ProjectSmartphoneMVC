@@ -13,7 +13,6 @@ import ProjectSmartphoneMVC.Dao.ProductsOrdersManageDao;
 import ProjectSmartphoneMVC.Dao.UsersManageDao;
 import ProjectSmartphoneMVC.Dto.CommentDto;
 import ProjectSmartphoneMVC.Dto.CommentReplyDto;
-import ProjectSmartphoneMVC.Dto.InfomationProduct;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.ProductsOrdersManageDto;
 import ProjectSmartphoneMVC.Dto.UsersManageDto;
@@ -106,6 +105,7 @@ public class HomeServiceImpl implements IHomeService{
 		return commentDao.deleteComment(id);
 	}
 	@Override
+
 	public List<chitietsp> GetDatainfomationProduct(String id) {
 		return productsDao.GetDatainfomationProduct(id);
 	}
@@ -113,6 +113,25 @@ public class HomeServiceImpl implements IHomeService{
 	public List<products> FindProduct(String name) {
 		return productsDao.FindProduct(name);
 	}
-	
+	public List<ProductsOrdersManageDto> getOderByUser(String idUser) {
+		return ordersManageDao.getOderByUser(idUser);
+	}
+	@Override
+	public List<chitietsp> GetDataThongTinChung(String id) {
+		return productsDao.GetDataThongTinChung(id);
+	}
+	@Override
+	public List<chitietsp> GetDataTienIch(String id) {
+		return productsDao.GetDataTienIch(id);
+	}
+	@Override
+	public int UpdatePass(Users users) {
+		return usersManageDao.UpdatePass(users);
+	}
+	@Override
+	public List<Users> getDataByUsers(String id, String pass) {
+		return usersManageDao.getDataByUsers(id, pass);
+	}
+
 	
 }

@@ -23,6 +23,38 @@ public class authenController extends BaseController{
 		_mvShase.addObject("userLogin",new Users());
 		return _mvShase;
 	}
+	
+	@RequestMapping(value = {"/authen/forget"}, method = RequestMethod.GET)
+	public ModelAndView forget() {
+		_mvShase.addObject("userForget", new Users());
+		_mvShase.addObject("status", null);
+		_mvShase.setViewName("authen/forget");
+		return _mvShase;
+	}
+	
+	@RequestMapping(value = {"/authen/forget"}, method = RequestMethod.POST)
+	public ModelAndView forgetUser(@ModelAttribute("userForget") Users users, @RequestParam("oldPassword") String oldPassword,
+            @RequestParam("re_new_pass") String re_new_pass, HttpSession session) {
+		if(session.getAttribute("idUser") != null) {
+			String id = session.getAttribute("idUser").toString();
+			List<Users> list = _homeService.getDataByUsers(id,oldPassword );
+			if (list.size()>0) {
+				if(re_new_pass.equals(users.getPassword())) {
+					users.setId(Integer.parseInt(id));
+					_homeService.UpdatePass(users);
+					_mvShase.addObject("status", "Đổi mật khẩu thành công.");
+				}else {
+					_mvShase.addObject("status", "Mật khẩu không trùng khớp.");
+				}
+			}else {
+				_mvShase.addObject("status", "Mật khẩu cũ không đúng.");
+			}
+		}
+		_mvShase.setViewName("authen/forget");
+		return _mvShase;
+	}
+	
+	
 	/*
 	 * Để gọi session trong controller thì dung hàm session.getAttribute("name session")
 	 * */

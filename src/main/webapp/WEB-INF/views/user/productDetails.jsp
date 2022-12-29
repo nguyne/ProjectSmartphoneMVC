@@ -38,7 +38,7 @@
 											<li class="chitiet-container-below-imgimg">
 												<a href="#" class="chitiet-container-link">
 													<div class="chitiet-container-hinhnho">
-														<img src="../assets/photos/'.$img->img_desct.'" alt="Điện thoại hình ảnh ở dưới" class="chitiet-container-below-img-con">
+														<img src="" alt="Điện thoại hình ảnh ở dưới" class="chitiet-container-below-img-con">
 													</div>
 													
 												</a>
@@ -522,6 +522,7 @@
 								</div>
 							</div>
 
+
 <!-- Model chi tiết sản phẩm -->
 
 
@@ -533,6 +534,7 @@
 			</span>
 			<button class="close-model-chitiet">×</button>
 		</div>
+		</c:forEach>
 		<div class="model-container__content">
 			<table class="model-content-detail">
 				<tbody>
@@ -594,28 +596,32 @@
 						<tr>
 							<td class="group_field">Thông tin chung</td>
 						</tr>
+					<c:forEach var = "itemthoidiem" items = "${thongtinchung }">
 						<tr>
 							<td class="model-content-detail__title">Thời điểm ra mắt</td>
-							<td class="model-content-detail__charactestic">'.$ttchung->thoidiemramat.'</td>
+							<td class="model-content-detail__charactestic">${itemthoidiem.thoidiemramat}</td>
 						</tr>
+					</c:forEach>
 						<tr>
 							<td class="group_field">Tiện ích</td>
 						</tr>
-						<tr>
-							<td class="model-content-detail__title">Bảo mật nâng cao</td>
-							<td class="model-content-detail__charactestic">'.$tienich->baomatnangcao.'</td>
-						</tr>
-						<tr>
-							<td class="model-content-detail__title">Ghi âm</td>
-							<td class="model-content-detail__charactestic">'.$tienich->ghiam.'</td>
-						</tr>
+						<c:forEach var = "itemtienich" items = "${tienich}">
+							<tr>
+								<td class="model-content-detail__title">Bảo mật nâng cao</td>
+								<td class="model-content-detail__charactestic">${itemtienich.baomatcao }</td>
+							</tr>
+							<tr>
+								<td class="model-content-detail__title">Ghi âm</td>
+								<td class="model-content-detail__charactestic">${itemtienich.ghiam }</td>
+							</tr>
+						</c:forEach>
 						<tr>
 							<td class="group_field">Thông tin sản phẩm</td>
 						</tr>
-						<c:forEach var = "item" items = "${InfomationProduct}">
+						<c:forEach var = "itemconfig" items = "${InfomationProduct}">
 							<tr>
 								<td class="model-content-detail__title">Thương hiệu</td>
-								<td class="model-content-detail__charactestic">${item.thuonghieu }</td>
+								<td class="model-content-detail__charactestic">${itemconfig.thuonghieu }</td>
 							</tr>
 						</c:forEach>
 				</tbody>
@@ -623,7 +629,7 @@
 		</div>
 	</div>
 </div>
-</c:forEach>
+
 <script type="text/javascript">
 	const btnclodeModel = document.querySelector('.close-model-chitiet');
 	const btnHienModel = document.querySelector('.tinhtrang-button__chitiet-link');

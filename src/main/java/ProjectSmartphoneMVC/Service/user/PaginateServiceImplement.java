@@ -37,7 +37,7 @@ public class PaginateServiceImplement {
 			totalPage = totalPage * limit < totalData ? totalPage + 1 : totalPage;
 			return totalPage;
 		}
-		
+		//khoảng của trang
 		public int CheckCurrentPage(int currenctPage, int totalPage) {
 			if (currenctPage < 1) {
 				return 1;

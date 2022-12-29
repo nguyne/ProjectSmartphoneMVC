@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 import ProjectSmartphoneMVC.Dto.Discount_TextDtoMapper;
 import ProjectSmartphoneMVC.Dto.InfomationProduct;
 import ProjectSmartphoneMVC.Dto.MapperProductManage;
+import ProjectSmartphoneMVC.Dto.MapperThongTinChung;
+import ProjectSmartphoneMVC.Dto.MapperTienIch;
 import ProjectSmartphoneMVC.Dto.ProductManageDto;
 import ProjectSmartphoneMVC.Dto.ProductsDtoMapper;
 import ProjectSmartphoneMVC.Dto.chitietsp;
@@ -77,6 +79,20 @@ public class ProductsDao extends BaseDao{
 		List<chitietsp> list = new ArrayList<chitietsp>();
 		String sql = "SELECT * FROM thongtinsp WHERE product_id ="+id;
 		list = _jdbcTemplate.query(sql, new InfomationProduct());
+		return list;
+	}
+	
+	public List<chitietsp> GetDataThongTinChung(String id){
+		List<chitietsp> list = new ArrayList<chitietsp>();
+		String sql = "SELECT * FROM thongtinchung WHERE product_id ="+id;
+		list = _jdbcTemplate.query(sql, new MapperThongTinChung());
+		return list;
+	}
+	
+	public List<chitietsp> GetDataTienIch(String id){
+		List<chitietsp> list = new ArrayList<chitietsp>();
+		String sql = "SELECT * FROM tienich WHERE product_id ="+id;
+		list = _jdbcTemplate.query(sql, new MapperTienIch());
 		return list;
 	}
 	
